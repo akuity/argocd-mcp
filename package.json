@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "ArgoCD MCP Server",
   "main": "dist/argocd-mcp-server",
+  "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "lint": "eslint src/**/*.ts",
