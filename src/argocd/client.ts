@@ -1,4 +1,4 @@
-import { HttpClient } from "./http.js";
+import { HttpClient } from './http.js';
 
 export class ArgoCDClient {
   private baseUrl: string;
@@ -12,7 +12,7 @@ export class ArgoCDClient {
   }
 
   public async getApplications() {
-    const { body } = await this.client.get("/api/v1/applications");
+    const { body } = await this.client.get('/api/v1/applications');
     return body;
   }
 }

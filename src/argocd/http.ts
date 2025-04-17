@@ -14,28 +14,25 @@ export class HttpClient {
     this.apiToken = apiToken;
     this.headers = {
       Authorization: `Bearer ${this.apiToken}`,
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json'
     };
   }
 
-  private async request<R>(
-    url: string,
-    init?: RequestInit,
-  ): Promise<HttpResponse<R>> {
+  private async request<R>(url: string, init?: RequestInit): Promise<HttpResponse<R>> {
     const response = await fetch(this.absUrl(url), {
       ...init,
-      headers: { ...init?.headers, ...this.headers },
+      headers: { ...init?.headers, ...this.headers }
     });
     const body = await response.json();
     return {
       status: response.status,
       headers: response.headers,
-      body: body as R,
+      body: body as R
     };
   }
 
   absUrl(url: string): string {
-    if (url.startsWith("http://") || url.startsWith("https://")) {
+    if (url.startsWith('http://') || url.startsWith('https://')) {
       return url;
     }
     return new URL(url, this.baseUrl).toString();
@@ -48,23 +45,23 @@ export class HttpClient {
 
   async post<T, R>(url: string, body?: T): Promise<HttpResponse<R>> {
     const response = await this.request<R>(url, {
-      method: "POST",
-      body: body ? JSON.stringify(body) : undefined,
+      method: 'POST',
+      body: body ? JSON.stringify(body) : undefined
     });
     return response;
   }
 
   async put<T, R>(url: string, body?: T): Promise<HttpResponse<R>> {
     const response = await this.request<R>(url, {
-      method: "PUT",
-      body: body ? JSON.stringify(body) : undefined,
+      method: 'PUT',
+      body: body ? JSON.stringify(body) : undefined
     });
     return response;
   }
 
   async delete<R>(url: string): Promise<HttpResponse<R>> {
     const response = await this.request<R>(url, {
-      method: "DELETE",
+      method: 'DELETE'
     });
     return response;
   }
