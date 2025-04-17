@@ -4,8 +4,10 @@
             "type": "stdio",
             "command": "node",
             "args": [
-                "${workspaceFolder}/dist/index.js"
-            ]
+                "${workspaceFolder}/dist/argocd-mcp-server.js",
+                "stdio"
+            ],
+            "envFile": "${workspaceFolder}/.env"
         }
     }
 }
