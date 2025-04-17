@@ -12,7 +12,7 @@ export class ArgoCDClient {
   }
 
   public async getApplications() {
-    const resp = await this.client.get("/api/v1/applications");
-    return resp;
+    const { body } = await this.client.get("/api/v1/applications");
+    return body;
   }
 }

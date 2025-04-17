@@ -1,3 +1,9 @@
+export interface HttpResponse<T> {
+  status: number;
+  headers: Headers;
+  body: T;
+}
+
 export class HttpClient {
   public readonly baseUrl: string;
   public readonly apiToken: string;
@@ -12,12 +18,20 @@ export class HttpClient {
     };
   }
 
-  private async request(url: string, init?: RequestInit): Promise<Response> {
+  private async request<R>(
+    url: string,
+    init?: RequestInit,
+  ): Promise<HttpResponse<R>> {
     const response = await fetch(this.absUrl(url), {
       ...init,
       headers: { ...init?.headers, ...this.headers },
     });
-    return response;
+    const body = await response.json();
+    return {
+      status: response.status,
+      headers: response.headers,
+      body: body as R,
+    };
   }
 
   absUrl(url: string): string {
@@ -27,31 +41,31 @@ export class HttpClient {
     return new URL(url, this.baseUrl).toString();
   }
 
-  async get<R>(url: string): Promise<R> {
-    const response = await this.request(url);
-    return response.json();
+  async get<R>(url: string): Promise<HttpResponse<R>> {
+    const response = await this.request<R>(url);
+    return response;
   }
 
-  async post<T, R>(url: string, body?: T): Promise<R> {
-    const response = await this.request(url, {
+  async post<T, R>(url: string, body?: T): Promise<HttpResponse<R>> {
+    const response = await this.request<R>(url, {
       method: "POST",
       body: body ? JSON.stringify(body) : undefined,
     });
-    return response.json();
+    return response;
   }
 
-  async put<T, R>(url: string, body?: T): Promise<R> {
-    const response = await this.request(url, {
+  async put<T, R>(url: string, body?: T): Promise<HttpResponse<R>> {
+    const response = await this.request<R>(url, {
       method: "PUT",
       body: body ? JSON.stringify(body) : undefined,
     });
-    return response.json();
+    return response;
   }
 
-  async delete<R>(url: string): Promise<R> {
-    const response = await this.request(url, {
+  async delete<R>(url: string): Promise<HttpResponse<R>> {
+    const response = await this.request<R>(url, {
       method: "DELETE",
     });
-    return response.json();
+    return response;
   }
 }
