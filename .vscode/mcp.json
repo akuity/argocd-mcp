@@ -1,6 +1,6 @@
 {
     "servers": {
-        "argocd-mcp-server": {
+        "argocd-mcp-server-stdio": {
             "type": "stdio",
             "command": "node",
             "args": [
@@ -8,6 +8,10 @@
                 "stdio"
             ],
             "envFile": "${workspaceFolder}/.env"
+        },
+        "argocd-mcp-server-sse": {
+            "type": "sse",
+            "url": "http://localhost:3000/sse"
         }
     }
 }
