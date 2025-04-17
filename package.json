@@ -2,15 +2,19 @@
   "name": "argocd-mcp-server",
   "version": "0.0.1",
   "description": "ArgoCD MCP Server",
+  "type": "module",
   "main": "dist/argocd-mcp-server",
   "scripts": {
+    "dev": "tsx watch src/index.ts",
     "build": "tsup"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^22.14.1",
     "tsup": "^8.4.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.3"
   }
 }
