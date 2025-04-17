@@ -1,0 +1,16 @@
+{
+  "name": "argocd-mcp-server",
+  "version": "0.0.1",
+  "description": "ArgoCD MCP Server",
+  "main": "dist/argocd-mcp-server",
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
+  }
+}
