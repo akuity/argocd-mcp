@@ -12,6 +12,14 @@ export class HttpClient {
     };
   }
 
+  private async request(url: string, init?: RequestInit): Promise<Response> {
+    const response = await fetch(this.absUrl(url), {
+      ...init,
+      headers: { ...init?.headers, ...this.headers },
+    });
+    return response;
+  }
+
   absUrl(url: string): string {
     if (url.startsWith("http://") || url.startsWith("https://")) {
       return url;
@@ -20,34 +28,29 @@ export class HttpClient {
   }
 
   async get<R>(url: string): Promise<R> {
-    const response = await fetch(this.absUrl(url), {
-      headers: this.headers,
-    });
+    const response = await this.request(url);
     return response.json();
   }
 
   async post<T, R>(url: string, body?: T): Promise<R> {
-    const response = await fetch(this.absUrl(url), {
+    const response = await this.request(url, {
       method: "POST",
-      headers: this.headers,
       body: body ? JSON.stringify(body) : undefined,
     });
     return response.json();
   }
 
   async put<T, R>(url: string, body?: T): Promise<R> {
-    const response = await fetch(this.absUrl(url), {
+    const response = await this.request(url, {
       method: "PUT",
-      headers: this.headers,
       body: body ? JSON.stringify(body) : undefined,
     });
     return response.json();
   }
 
   async delete<R>(url: string): Promise<R> {
-    const response = await fetch(this.absUrl(url), {
+    const response = await this.request(url, {
       method: "DELETE",
-      headers: this.headers,
     });
     return response.json();
   }
