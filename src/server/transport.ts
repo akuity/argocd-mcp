@@ -2,8 +2,10 @@ import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import express from "express";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { logger } from "../logging/logging.js";
 
 export const connectStdioTransport = (server: McpServer) => {
+  logger.info("Connecting to stdio transport");
   server.connect(new StdioServerTransport());
 };
 
@@ -30,5 +32,6 @@ export const connectSSETransport = (server: McpServer, port: number) => {
     }
   });
 
+  logger.info(`Connecting to SSE transport on port: ${port}`);
   app.listen(port);
 };
