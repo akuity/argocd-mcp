@@ -13,6 +13,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.9.0",
+    "zod": "^3.24.3"
+  },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
     "@types/node": "^22.14.1",
