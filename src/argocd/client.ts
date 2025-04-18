@@ -24,35 +24,49 @@ export class ArgoCDClient {
     return body;
   }
 
-  public async getApplication(name: string) {
-    const { body } = await this.client.get<Application>(`/api/v1/applications/${name}`);
+  public async getApplication(applicationName: string) {
+    const { body } = await this.client.get<Application>(`/api/v1/applications/${applicationName}`);
     return body;
   }
 
-  public async getApplicationResourceTree(name: string) {
+  public async getApplicationResourceTree(applicationName: string) {
     const { body } = await this.client.get<ApplicationTree>(
-      `/api/v1/applications/${name}/resource-tree`
+      `/api/v1/applications/${applicationName}/resource-tree`
     );
     return body;
   }
 
-  public async getApplicationManagedResources(name: string) {
+  public async getApplicationManagedResources(applicationName: string) {
     const { body } = await this.client.get<{ items: ResourceDiff[] }>(
-      `/api/v1/applications/${name}/managed-resources`
+      `/api/v1/applications/${applicationName}/managed-resources`
     );
     return body;
   }
 
-  public async getWorkloadLogs() {}
-
-  public async getResourceEvents(name: string) {
-    const { body } = await this.client.get<EventList>(`/api/v1/applications/${name}/events`);
+  public async getApplicationLogs(applicationName: string) {
+    const { body } = await this.client.get<{ logs: string[] }>(
+      `/api/v1/applications/${applicationName}/logs`
+    );
     return body;
   }
 
-  public async getResourceActions(name: string) {
+  public async getPodLogs(applicationName: string, podName: string) {
+    const { body } = await this.client.get<{ logs: string[] }>(
+      `/api/v1/applications/${applicationName}/pods/${podName}/logs`
+    );
+    return body;
+  }
+
+  public async getResourceEvents(applicationName: string) {
+    const { body } = await this.client.get<EventList>(
+      `/api/v1/applications/${applicationName}/events`
+    );
+    return body;
+  }
+
+  public async getResourceActions(applicationName: string) {
     const { body } = await this.client.get<{ actions: ResourceAction[] }>(
-      `/api/v1/applications/${name}/resource/actions`
+      `/api/v1/applications/${applicationName}/resource/actions`
     );
     return body;
   }

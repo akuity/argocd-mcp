@@ -24,32 +24,32 @@ export class Server extends McpServer {
     this.addJsonOutputTool(
       'get_application',
       'get_application returns application by application name',
-      { name: z.string() },
-      async ({ name }) => await this.argocdClient.getApplication(name)
+      { applicationName: z.string() },
+      async ({ applicationName }) => await this.argocdClient.getApplication(applicationName)
     );
     this.addJsonOutputTool(
       'get_application_resource_tree',
       'get_application_resource_tree returns resource tree for application by application name',
-      { name: z.string() },
-      async ({ name }) => await this.argocdClient.getApplicationResourceTree(name)
+      { applicationName: z.string() },
+      async ({ applicationName }) => await this.argocdClient.getApplicationResourceTree(applicationName)
     );
     this.addJsonOutputTool(
       'get_application_managed_resources',
       'get_application_managed_resources returns managed resources for application by application name',
-      { name: z.string() },
-      async ({ name }) => await this.argocdClient.getApplicationManagedResources(name)
+      { applicationName: z.string() },
+      async ({ applicationName }) => await this.argocdClient.getApplicationManagedResources(applicationName)
     );
     this.addJsonOutputTool(
       'get_application_resource_events',
       'get_application_resource_events returns resource events for application by application name',
-      { name: z.string() },
-      async ({ name }) => await this.argocdClient.getResourceEvents(name)
+      { applicationName: z.string() },
+      async ({ applicationName }) => await this.argocdClient.getResourceEvents(applicationName)
     );
     this.addJsonOutputTool(
       'get_application_resource_actions',
       'get_application_resource_actions returns resource actions for application by application name',
-      { name: z.string() },
-      async ({ name }) => await this.argocdClient.getResourceActions(name)
+      { applicationName: z.string() },
+      async ({ applicationName }) => await this.argocdClient.getResourceActions(applicationName)
     );
   }
 
