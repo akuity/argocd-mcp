@@ -4,6 +4,8 @@ export interface HttpResponse<T> {
   body: T;
 }
 
+type SearchParams = Record<string, string | number>;
+
 export class HttpClient {
   public readonly baseUrl: string;
   public readonly apiToken: string;
@@ -18,8 +20,19 @@ export class HttpClient {
     };
   }
 
-  private async request<R>(url: string, init?: RequestInit): Promise<HttpResponse<R>> {
-    const response = await fetch(this.absUrl(url), {
+  private async request<R>(
+    url: string,
+    params?: SearchParams,
+    init?: RequestInit
+  ): Promise<HttpResponse<R>> {
+    const urlObject = this.absUrl(url);
+    if (params) {
+      Object.entries(params).forEach(([key, value]) => {
+        if (value === undefined || value === null) return;
+        urlObject.searchParams.set(key, value.toString());
+      });
+    }
+    const response = await fetch(urlObject, {
       ...init,
       headers: { ...init?.headers, ...this.headers }
     });
@@ -31,8 +44,20 @@ export class HttpClient {
     };
   }
 
-  private async requestStream<R>(url: string, cb: (chunk: R) => void, init?: RequestInit) {
-    const response = await fetch(this.absUrl(url), {
+  private async requestStream<R>(
+    url: string,
+    cb: (chunk: R) => void,
+    params?: SearchParams,
+    init?: RequestInit
+  ) {
+    const urlObject = this.absUrl(url);
+    if (params) {
+      Object.entries(params).forEach(([key, value]) => {
+        if (value === undefined || value === null) return;
+        urlObject.searchParams.set(key, value.toString());
+      });
+    }
+    const response = await fetch(urlObject, {
       ...init,
       headers: { ...init?.headers, ...this.headers }
     });
@@ -60,24 +85,24 @@ export class HttpClient {
     }
   }
 
-  absUrl(url: string): string {
+  absUrl(url: string): URL {
     if (url.startsWith('http://') || url.startsWith('https://')) {
-      return url;
+      return new URL(url);
     }
-    return new URL(url, this.baseUrl).toString();
+    return new URL(url, this.baseUrl);
   }
 
-  async get<R>(url: string): Promise<HttpResponse<R>> {
-    const response = await this.request<R>(url);
+  async get<R>(url: string, params?: SearchParams): Promise<HttpResponse<R>> {
+    const response = await this.request<R>(url, params);
     return response;
   }
 
-  async getStream<R>(url: string, cb: (chunk: R) => void): Promise<void> {
-    await this.requestStream<R>(url, cb);
+  async getStream<R>(url: string, cb: (chunk: R) => void, params?: SearchParams): Promise<void> {
+    await this.requestStream<R>(url, cb, params);
   }
 
   async post<T, R>(url: string, body?: T): Promise<HttpResponse<R>> {
-    const response = await this.request<R>(url, {
+    const response = await this.request<R>(url, undefined, {
       method: 'POST',
       body: body ? JSON.stringify(body) : undefined
     });
@@ -85,7 +110,7 @@ export class HttpClient {
   }
 
   async put<T, R>(url: string, body?: T): Promise<HttpResponse<R>> {
-    const response = await this.request<R>(url, {
+    const response = await this.request<R>(url, undefined, {
       method: 'PUT',
       body: body ? JSON.stringify(body) : undefined
     });
@@ -93,7 +118,7 @@ export class HttpClient {
   }
 
   async delete<R>(url: string): Promise<HttpResponse<R>> {
-    const response = await this.request<R>(url, {
+    const response = await this.request<R>(url, undefined, {
       method: 'DELETE'
     });
     return response;

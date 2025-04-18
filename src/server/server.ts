@@ -18,8 +18,10 @@ export class Server extends McpServer {
     this.addJsonOutputTool(
       'get_applications',
       'get_applications returns list of applications',
-      {},
-      async () => await this.argocdClient.getApplications()
+      {
+        search: z.string().describe('Search applications by name, optional')
+      },
+      async ({ search }) => await this.argocdClient.getApplications({ search })
     );
     this.addJsonOutputTool(
       'get_application',
