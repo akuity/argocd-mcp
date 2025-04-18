@@ -3,6 +3,7 @@ import {
   ApplicationList,
   ApplicationTree,
   EventList,
+  LogEntry,
   ResourceAction,
   ResourceDiff
 } from '../shared/models/models.js';
@@ -44,17 +45,20 @@ export class ArgoCDClient {
   }
 
   public async getApplicationLogs(applicationName: string) {
-    const { body } = await this.client.get<{ logs: string[] }>(
-      `/api/v1/applications/${applicationName}/logs`
+    const logs: LogEntry[] = [];
+    await this.client.getStream<LogEntry>(`/api/v1/applications/${applicationName}/logs`, (chunk) =>
+      logs.push(chunk)
     );
-    return body;
+    return logs;
   }
 
   public async getPodLogs(applicationName: string, podName: string) {
-    const { body } = await this.client.get<{ logs: string[] }>(
-      `/api/v1/applications/${applicationName}/pods/${podName}/logs`
+    const logs: LogEntry[] = [];
+    await this.client.getStream<LogEntry>(
+      `/api/v1/applications/${applicationName}/pods/${podName}/logs`,
+      (chunk) => logs.push(chunk)
     );
-    return body;
+    return logs;
   }
 
   public async getResourceEvents(applicationName: string) {

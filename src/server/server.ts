@@ -31,13 +31,28 @@ export class Server extends McpServer {
       'get_application_resource_tree',
       'get_application_resource_tree returns resource tree for application by application name',
       { applicationName: z.string() },
-      async ({ applicationName }) => await this.argocdClient.getApplicationResourceTree(applicationName)
+      async ({ applicationName }) =>
+        await this.argocdClient.getApplicationResourceTree(applicationName)
     );
     this.addJsonOutputTool(
       'get_application_managed_resources',
       'get_application_managed_resources returns managed resources for application by application name',
       { applicationName: z.string() },
-      async ({ applicationName }) => await this.argocdClient.getApplicationManagedResources(applicationName)
+      async ({ applicationName }) =>
+        await this.argocdClient.getApplicationManagedResources(applicationName)
+    );
+    this.addJsonOutputTool(
+      'get_application_logs',
+      'get_application_logs returns logs for application by application name',
+      { applicationName: z.string() },
+      async ({ applicationName }) => await this.argocdClient.getApplicationLogs(applicationName)
+    );
+    this.addJsonOutputTool(
+      'get_application_pod_logs',
+      'get_application_pod_logs returns logs for application pod by application name and pod name',
+      { applicationName: z.string(), podName: z.string() },
+      async ({ applicationName, podName }) =>
+        await this.argocdClient.getPodLogs(applicationName, podName)
     );
     this.addJsonOutputTool(
       'get_application_resource_events',
