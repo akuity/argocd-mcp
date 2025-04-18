@@ -20,7 +20,7 @@ cd argocd-mcp-server
 pnpm install
 ```
 
-3. Create a `.env` file in the root directory with your ArgoCD configuration:
+3. Copy the `.env.example` and create a `.env` file in the root directory with your ArgoCD configuration:
 ```env
 # Uncomment to disable SSL verification (not recommended for production)
 # NODE_TLS_REJECT_UNAUTHORIZED=0
@@ -33,5 +33,5 @@ ARGOCD_API_TOKEN=<your_api_token>
 ```bash
 pnpm run dev
 ```
-
 Once the server is running, you can utilize the MCP server within Visual Studio Code or other MCP client.
+

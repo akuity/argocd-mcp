@@ -4,6 +4,16 @@ import { Implementation } from '@modelcontextprotocol/sdk/types.js';
 import packageJSON from '../../package.json' with { type: 'json' };
 import { ArgoCDClient } from '../argocd/client.js';
 import { z, ZodRawShape } from 'zod';
+import { ResourceRef } from '../shared/models/models.js';
+
+const resourceRefSchema = z.object({
+  uid: z.string(),
+  kind: z.string(),
+  namespace: z.string(),
+  name: z.string(),
+  version: z.string(),
+  group: z.string()
+});
 
 export class Server extends McpServer {
   private argocdClient: ArgoCDClient;
@@ -16,18 +26,43 @@ export class Server extends McpServer {
     );
 
     this.addJsonOutputTool(
-      'get_applications',
-      'get_applications returns list of applications',
+      'list_applications',
+      'list_applications returns list of applications',
       {
         search: z.string().describe('Search applications by name, optional')
       },
-      async ({ search }) => await this.argocdClient.getApplications({ search })
+      async ({ search }) => await this.argocdClient.listApplications({ search })
     );
     this.addJsonOutputTool(
       'get_application',
       'get_application returns application by application name',
       { applicationName: z.string() },
       async ({ applicationName }) => await this.argocdClient.getApplication(applicationName)
+    );
+    this.addJsonOutputTool(
+      'create_application',
+      'create_application creates application',
+      { application: z.any() },
+      async ({ application }) => await this.argocdClient.createApplication(application)
+    );
+    this.addJsonOutputTool(
+      'update_application',
+      'update_application updates application',
+      { applicationName: z.string(), application: z.any() },
+      async ({ applicationName, application }) =>
+        await this.argocdClient.updateApplication(applicationName, application)
+    );
+    this.addJsonOutputTool(
+      'delete_application',
+      'delete_application deletes application',
+      { applicationName: z.string() },
+      async ({ applicationName }) => await this.argocdClient.deleteApplication(applicationName)
+    );
+    this.addJsonOutputTool(
+      'sync_application',
+      'sync_application syncs application',
+      { applicationName: z.string() },
+      async ({ applicationName }) => await this.argocdClient.syncApplication(applicationName)
     );
     this.addJsonOutputTool(
       'get_application_resource_tree',
@@ -57,16 +92,67 @@ export class Server extends McpServer {
         await this.argocdClient.getPodLogs(applicationName, podName)
     );
     this.addJsonOutputTool(
-      'get_application_resource_events',
-      'get_application_resource_events returns resource events for application by application name',
+      'get_application_events',
+      'get_application_events returns events for application by application name',
       { applicationName: z.string() },
-      async ({ applicationName }) => await this.argocdClient.getResourceEvents(applicationName)
+      async ({ applicationName }) => await this.argocdClient.getApplicationEvents(applicationName)
     );
     this.addJsonOutputTool(
-      'get_application_resource_actions',
-      'get_application_resource_actions returns resource actions for application by application name',
-      { applicationName: z.string() },
-      async ({ applicationName }) => await this.argocdClient.getResourceActions(applicationName)
+      'get_resource_events',
+      'get_resource_events returns events for a resource that is managed by an application',
+      {
+        applicationName: z.string(),
+        applicationNamespace: z.string(),
+        resourceUID: z.string(),
+        resourceNamespace: z.string(),
+        resourceName: z.string()
+      },
+      async ({
+        applicationName,
+        applicationNamespace,
+        resourceUID,
+        resourceNamespace,
+        resourceName
+      }) =>
+        await this.argocdClient.getResourceEvents(
+          applicationName,
+          applicationNamespace,
+          resourceUID,
+          resourceNamespace,
+          resourceName
+        )
+    );
+    this.addJsonOutputTool(
+      'get_resource_actions',
+      'get_resource_actions returns actions for a resource that is managed by an application',
+      {
+        applicationName: z.string(),
+        applicationNamespace: z.string(),
+        resourceRef: resourceRefSchema
+      },
+      async ({ applicationName, applicationNamespace, resourceRef }) =>
+        await this.argocdClient.getResourceActions(
+          applicationName,
+          applicationNamespace,
+          resourceRef as ResourceRef
+        )
+    );
+    this.addJsonOutputTool(
+      'run_resource_action',
+      'run_resource_action runs an action on a resource',
+      {
+        applicationName: z.string(),
+        applicationNamespace: z.string(),
+        resourceRef: resourceRefSchema,
+        action: z.string()
+      },
+      async ({ applicationName, applicationNamespace, resourceRef, action }) =>
+        await this.argocdClient.runResourceAction(
+          applicationName,
+          applicationNamespace,
+          resourceRef as ResourceRef,
+          action
+        )
     );
   }
 
