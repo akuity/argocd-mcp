@@ -1,3 +1,4 @@
+import { ApplicationList } from '../shared/models/models.js';
 import { HttpClient } from './http.js';
 
 export class ArgoCDClient {
@@ -12,7 +13,7 @@ export class ArgoCDClient {
   }
 
   public async getApplications() {
-    const { body } = await this.client.get('/api/v1/applications');
+    const { body } = await this.client.get<ApplicationList>('/api/v1/applications');
     return body;
   }
 }
