@@ -18,10 +18,10 @@ export const connectSSETransport = (port: number) => {
   const app = express();
   const transports: { [sessionId: string]: SSEServerTransport } = {};
 
-  app.get('/sse', async (_, res) => {
+  app.get('/sse', async (req, res) => {
     const server = createServer({
-      argocdBaseUrl: process.env.ARGOCD_BASE_URL || '',
-      argocdApiToken: process.env.ARGOCD_API_TOKEN || ''
+      argocdBaseUrl: (req.headers['x-argocd-base-url'] as string) || '',
+      argocdApiToken: (req.headers['x-argocd-api-token'] as string) || ''
     });
 
     const transport = new SSEServerTransport('/messages', res);
