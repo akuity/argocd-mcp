@@ -1,6 +1,5 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { createServer } from '../server/server.js';
 import { connectStdioTransport, connectSSETransport } from '../server/transport.js';
 
 export const cmd = () => {
@@ -10,10 +9,7 @@ export const cmd = () => {
     'stdio',
     'Start ArgoCD MCP server using stdio.',
     () => {},
-    () => {
-      const server = createServer();
-      connectStdioTransport(server);
-    }
+    () => connectStdioTransport()
   );
 
   exe.command(
@@ -25,10 +21,7 @@ export const cmd = () => {
         default: 3000
       });
     },
-    ({ port }) => {
-      const server = createServer();
-      connectSSETransport(server, port);
-    }
+    ({ port }) => connectSSETransport(port)
   );
 
   exe.demandCommand().parseSync();

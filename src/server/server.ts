@@ -1,5 +1,4 @@
 import { McpServer, ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { Implementation } from '@modelcontextprotocol/sdk/types.js';
 
 import packageJSON from '../../package.json' with { type: 'json' };
 import { ArgoCDClient } from '../argocd/client.js';
