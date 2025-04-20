@@ -15,15 +15,20 @@ const resourceRefSchema = z.object({
   group: z.string()
 });
 
+type ServerInfo = {
+  argocdBaseUrl: string;
+  argocdApiToken: string;
+};
+
 export class Server extends McpServer {
   private argocdClient: ArgoCDClient;
 
-  constructor(serverInfo: Implementation) {
-    super(serverInfo);
-    this.argocdClient = new ArgoCDClient(
-      process.env.ARGOCD_BASE_URL || '',
-      process.env.ARGOCD_API_TOKEN || ''
-    );
+  constructor(serverInfo: ServerInfo) {
+    super({
+      name: packageJSON.name,
+      version: packageJSON.version
+    });
+    this.argocdClient = new ArgoCDClient(serverInfo.argocdBaseUrl, serverInfo.argocdApiToken);
 
     this.addJsonOutputTool(
       'list_applications',
@@ -179,11 +184,6 @@ export class Server extends McpServer {
   }
 }
 
-export const createServer = () => {
-  const server = new Server({
-    name: packageJSON.name,
-    version: packageJSON.version
-  });
-
-  return server;
+export const createServer = (serverInfo: ServerInfo) => {
+  return new Server(serverInfo);
 };
