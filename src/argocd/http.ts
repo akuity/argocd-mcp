@@ -4,7 +4,7 @@ export interface HttpResponse<T> {
   body: T;
 }
 
-type SearchParams = Record<string, string | number>;
+type SearchParams = Record<string, string | number | undefined | null> | null;
 
 export class HttpClient {
   public readonly baseUrl: string;
@@ -28,8 +28,7 @@ export class HttpClient {
     const urlObject = this.absUrl(url);
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
-        if (value === undefined || value === null) return;
-        urlObject.searchParams.set(key, value.toString());
+        urlObject.searchParams.set(key, value?.toString() || '');
       });
     }
     const response = await fetch(urlObject, {
@@ -46,15 +45,14 @@ export class HttpClient {
 
   private async requestStream<R>(
     url: string,
-    cb: (chunk: R) => void,
     params?: SearchParams,
+    cb?: (chunk: R) => void,
     init?: RequestInit
   ) {
     const urlObject = this.absUrl(url);
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
-        if (value === undefined || value === null) return;
-        urlObject.searchParams.set(key, value.toString());
+        urlObject.searchParams.set(key, value?.toString() || '');
       });
     }
     const response = await fetch(urlObject, {
@@ -79,7 +77,7 @@ export class HttpClient {
       for (const line of lines) {
         if (line.trim()) {
           const json = JSON.parse(line);
-          cb(json['result']);
+          cb?.(json['result']);
         }
       }
     }
@@ -97,28 +95,28 @@ export class HttpClient {
     return response;
   }
 
-  async getStream<R>(url: string, cb: (chunk: R) => void, params?: SearchParams): Promise<void> {
-    await this.requestStream<R>(url, cb, params);
+  async getStream<R>(url: string, params?: SearchParams, cb?: (chunk: R) => void): Promise<void> {
+    await this.requestStream<R>(url, params, cb);
   }
 
-  async post<T, R>(url: string, body?: T): Promise<HttpResponse<R>> {
-    const response = await this.request<R>(url, undefined, {
+  async post<T, R>(url: string, params?: SearchParams, body?: T): Promise<HttpResponse<R>> {
+    const response = await this.request<R>(url, params, {
       method: 'POST',
       body: body ? JSON.stringify(body) : undefined
     });
     return response;
   }
 
-  async put<T, R>(url: string, body?: T): Promise<HttpResponse<R>> {
-    const response = await this.request<R>(url, undefined, {
+  async put<T, R>(url: string, params?: SearchParams, body?: T): Promise<HttpResponse<R>> {
+    const response = await this.request<R>(url, params, {
       method: 'PUT',
       body: body ? JSON.stringify(body) : undefined
     });
     return response;
   }
 
-  async delete<R>(url: string): Promise<HttpResponse<R>> {
-    const response = await this.request<R>(url, undefined, {
+  async delete<R>(url: string, params?: SearchParams): Promise<HttpResponse<R>> {
+    const response = await this.request<R>(url, params, {
       method: 'DELETE'
     });
     return response;
