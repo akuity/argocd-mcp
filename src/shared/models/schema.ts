@@ -19,7 +19,8 @@ export const ResourceRefSchema = z.object({
 
 export const ApplicationSchema = z.object({
   metadata: z.object({
-    name: z.string()
+    name: z.string(),
+    namespace: ApplicationNamespaceSchema
   }),
   spec: z.object({
     project: z.string(),
@@ -33,8 +34,7 @@ export const ApplicationSchema = z.object({
       automated: z.object({
         prune: z.boolean(),
         selfHeal: z.boolean()
-      })
-        .optional(),
+      }).optional(),
       retry: z
         .object({
           limit: z.number(),
