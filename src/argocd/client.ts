@@ -78,8 +78,31 @@ export class ArgoCDClient {
 
   public async getApplicationLogs(applicationName: string) {
     const logs: LogEntry[] = [];
-    await this.client.getStream<LogEntry>(`/api/v1/applications/${applicationName}/logs`, (chunk) =>
-      logs.push(chunk)
+    await this.client.getStream<LogEntry>(
+      `/api/v1/applications/${applicationName}/logs`,
+      null,
+      (chunk) => logs.push(chunk)
+    );
+    return logs;
+  }
+
+  public async getWorkloadLogs(
+    applicationName: string,
+    applicationNamespace: string,
+    resourceRef: ResourceRef
+  ) {
+    const logs: LogEntry[] = [];
+    await this.client.getStream<LogEntry>(
+      `/api/v1/applications/${applicationName}/logs`,
+      {
+        appNamespace: applicationNamespace,
+        namespace: resourceRef.namespace,
+        resourceName: resourceRef.name,
+        group: resourceRef.group,
+        kind: resourceRef.kind,
+        version: resourceRef.version
+      },
+      (chunk) => logs.push(chunk)
     );
     return logs;
   }
@@ -88,6 +111,7 @@ export class ArgoCDClient {
     const logs: LogEntry[] = [];
     await this.client.getStream<LogEntry>(
       `/api/v1/applications/${applicationName}/pods/${podName}/logs`,
+      null,
       (chunk) => logs.push(chunk)
     );
     return logs;
