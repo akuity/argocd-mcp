@@ -85,7 +85,7 @@ export class Server extends McpServer {
           .describe(
             'Namespace of the application, note the namespace is not always the same as the resource namespace'
           ),
-        resourceRef: resourceRefSchema
+        resourceRef: ResourceRefSchema
       },
       async ({ applicationName, applicationNamespace, resourceRef }) =>
         await this.argocdClient.getWorkloadLogs(
@@ -139,7 +139,7 @@ export class Server extends McpServer {
           .describe(
             'Namespace of the application, note the namespace is not always the same as the resource namespace'
           ),
-        resourceRef: resourceRefSchema
+        resourceRef: ResourceRefSchema
       },
       async ({ applicationName, applicationNamespace, resourceRef }) =>
         await this.argocdClient.getResourceActions(
@@ -158,7 +158,7 @@ export class Server extends McpServer {
           .describe(
             'Namespace of the application, note the namespace is not always the same as the resource namespace'
           ),
-        resourceRef: resourceRefSchema,
+        resourceRef: ResourceRefSchema,
         action: z.string()
       },
       async ({ applicationName, applicationNamespace, resourceRef, action }) =>
