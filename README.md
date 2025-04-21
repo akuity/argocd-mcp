@@ -74,11 +74,11 @@ An implementation of [Model Context Protocol (MCP)](https://modelcontextprotocol
 
 2. Configure Claude Desktop to use this configuration file in settings.
 
-### Available Tools
+## Available Tools
 
 The server provides the following ArgoCD management tools:
 
-#### Application Management
+### Application Management
 - `list_applications`: List and filter all applications
 - `get_application`: Get detailed information about a specific application
 - `create_application`: Create a new application
@@ -86,7 +86,7 @@ The server provides the following ArgoCD management tools:
 - `delete_application`: Delete an application
 - `sync_application`: Trigger a sync operation on an application
 
-#### Resource Management
+### Resource Management
 - `get_application_resource_tree`: Get the resource tree for a specific application
 - `get_application_managed_resources`: Get managed resources for a specific application
 - `get_application_workload_logs`: Get logs for application workloads (Pods, Deployments, etc.)
@@ -94,7 +94,7 @@ The server provides the following ArgoCD management tools:
 - `get_resource_actions`: Get available actions for resources
 - `run_resource_action`: Run an action on a resource
 
-### For Development
+## For Development
 
 1. Clone the repository:
 ```bash
