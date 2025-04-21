@@ -14,15 +14,15 @@
         }
     ],
     "servers": {
-        "argocd-mcp-server-stdio": {
-            "type": "stdio",
-            "command": "node",
-            "args": [
-                "${workspaceFolder}/dist/argocd-mcp-server.js",
-                "stdio"
-            ],
-            "envFile": "${workspaceFolder}/.env"
-        },
+        // "argocd-mcp-server-stdio": {
+        //     "type": "stdio",
+        //     "command": "node",
+        //     "args": [
+        //         "${workspaceFolder}/dist/argocd-mcp-server.js",
+        //         "stdio"
+        //     ],
+        //     "envFile": "${workspaceFolder}/.env"
+        // },
         "argocd-mcp-server-sse": {
             "type": "sse",
             "url": "http://localhost:3000/sse",

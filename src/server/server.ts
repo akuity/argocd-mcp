@@ -112,7 +112,11 @@ export class Server extends McpServer {
       'get_resource_events returns events for a resource that is managed by an application',
       {
         applicationName: z.string(),
-        applicationNamespace: z.string(),
+        applicationNamespace: z
+          .string()
+          .describe(
+            'Namespace of the application, note the namespace is not always the same as the resource namespace'
+          ),
         resourceUID: z.string(),
         resourceNamespace: z.string(),
         resourceName: z.string()
@@ -137,7 +141,11 @@ export class Server extends McpServer {
       'get_resource_actions returns actions for a resource that is managed by an application',
       {
         applicationName: z.string(),
-        applicationNamespace: z.string(),
+        applicationNamespace: z
+          .string()
+          .describe(
+            'Namespace of the application, note the namespace is not always the same as the resource namespace'
+          ),
         resourceRef: resourceRefSchema
       },
       async ({ applicationName, applicationNamespace, resourceRef }) =>
@@ -152,7 +160,11 @@ export class Server extends McpServer {
       'run_resource_action runs an action on a resource',
       {
         applicationName: z.string(),
-        applicationNamespace: z.string(),
+        applicationNamespace: z
+          .string()
+          .describe(
+            'Namespace of the application, note the namespace is not always the same as the resource namespace'
+          ),
         resourceRef: resourceRefSchema,
         action: z.string()
       },
