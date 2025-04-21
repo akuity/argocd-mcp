@@ -80,7 +80,10 @@ export class ArgoCDClient {
     const logs: LogEntry[] = [];
     await this.client.getStream<LogEntry>(
       `/api/v1/applications/${applicationName}/logs`,
-      null,
+      {
+        follow: false,
+        tailLines: 100
+      },
       (chunk) => logs.push(chunk)
     );
     return logs;
@@ -100,7 +103,9 @@ export class ArgoCDClient {
         resourceName: resourceRef.name,
         group: resourceRef.group,
         kind: resourceRef.kind,
-        version: resourceRef.version
+        version: resourceRef.version,
+        follow: false,
+        tailLines: 100
       },
       (chunk) => logs.push(chunk)
     );
@@ -111,7 +116,10 @@ export class ArgoCDClient {
     const logs: LogEntry[] = [];
     await this.client.getStream<LogEntry>(
       `/api/v1/applications/${applicationName}/pods/${podName}/logs`,
-      null,
+      {
+        follow: false,
+        tailLines: 100
+      },
       (chunk) => logs.push(chunk)
     );
     return logs;
