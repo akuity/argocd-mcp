@@ -1,18 +1,18 @@
-# ArgoCD MCP Server
+# Argo CD MCP Server
 
-An implementation of [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), enabling AI assistants to interact with your ArgoCD applications through natural language. This server allows for seamless integration with Visual Studio Code and other MCP clients through both stdio and Server-Sent Events (SSE) transport protocols.
+An implementation of [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for [Argo CD](https://argo-cd.readthedocs.io/en/stable/), enabling AI assistants to interact with your Argo CD applications through natural language. This server allows for seamless integration with Visual Studio Code and other MCP clients through both stdio and Server-Sent Events (SSE) transport protocols.
 
 ## Features
 
 - **Transport Protocols**: Supports both stdio and SSE transport modes for flexible integration with different clients
-- **Complete ArgoCD API Integration**: Provides comprehensive access to ArgoCD resources and operations
-- **AI Assistant Ready**: Pre-configured tools for AI assistants to interact with ArgoCD in natural language
+- **Complete Argo CD API Integration**: Provides comprehensive access to Argo CD resources and operations
+- **AI Assistant Ready**: Pre-configured tools for AI assistants to interact with Argo CD in natural language
 
 ## Prerequisites
 
 - Node.js (v18 or higher recommended)
 - pnpm package manager (for development)
-- ArgoCD instance with API access
+- Argo CD instance with API access
 
 ## Installation
 
