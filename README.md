@@ -40,7 +40,7 @@ An implementation of Model Context Protocol (MCP) server for ArgoCD, enabling AI
                "type": "stdio",
                "command": "npx",
                "args": [
-                   "akuity/argocd-mcp-server",
+                   "argocd-mcp-server",
                    "stdio"
                ],
                "env": {
@@ -62,7 +62,7 @@ An implementation of Model Context Protocol (MCP) server for ArgoCD, enabling AI
      "mcpServers": {
        "argocd-mcp": {
          "command": "npx",
-         "args": ["akuity/argocd-mcp-server", "stdio"],
+         "args": ["argocd-mcp-server", "stdio"],
          "env": {
            "ARGOCD_BASE_URL": "https://your-argocd-server.com",
            "ARGOCD_API_TOKEN": "your_argocd_token"
