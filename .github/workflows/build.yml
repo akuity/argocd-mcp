@@ -22,18 +22,5 @@ jobs:
       - name: Lint
         run:
           pnpm run lint
-      - name: Update version with commit SHA
-        run: |
-          PACKAGE_VERSION=$(node -p "require('./package.json').version")
-          COMMIT_SHA=$(git rev-parse --short HEAD)
-          NEW_VERSION="${PACKAGE_VERSION}-${COMMIT_SHA}"
-          npm version --no-git-tag-version "${NEW_VERSION}"
-          echo "Package version updated to ${NEW_VERSION}"
       - name: Create npm package
         run: pnpm pack
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: argocd-mcp-server
-          path: argocd-mcp-server-*.tgz
-          retention-days: 7
