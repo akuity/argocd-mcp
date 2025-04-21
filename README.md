@@ -18,12 +18,7 @@ An implementation of Model Context Protocol (MCP) server for ArgoCD, enabling AI
 
 ### Usage with VSCode
 
-1. Install the MCP Server npm package:
-   ```bash
-   npm install argocd-mcp-server
-   ```
-
-2. Create a `.vscode/mcp.json` file in your project:
+1. Create a `.vscode/mcp.json` file in your project:
    ```json
    {
        "inputs": [
@@ -45,7 +40,7 @@ An implementation of Model Context Protocol (MCP) server for ArgoCD, enabling AI
                "type": "stdio",
                "command": "npx",
                "args": [
-                   "argocd-mcp-server",
+                   "akuity/argocd-mcp-server",
                    "stdio"
                ],
                "env": {
@@ -57,7 +52,7 @@ An implementation of Model Context Protocol (MCP) server for ArgoCD, enabling AI
    }
    ```
 
-3. Start a conversation with an AI assistant in VS Code that supports MCP.
+2. Start a conversation with an AI assistant in VS Code that supports MCP.
 
 ### Usage with Claude Desktop
 
@@ -67,7 +62,7 @@ An implementation of Model Context Protocol (MCP) server for ArgoCD, enabling AI
      "mcpServers": {
        "argocd-mcp": {
          "command": "npx",
-         "args": ["argocd-mcp-server", "stdio"],
+         "args": ["akuity/argocd-mcp-server", "stdio"],
          "env": {
            "ARGOCD_BASE_URL": "https://your-argocd-server.com",
            "ARGOCD_API_TOKEN": "your_argocd_token"
@@ -78,38 +73,6 @@ An implementation of Model Context Protocol (MCP) server for ArgoCD, enabling AI
    ```
 
 2. Configure Claude Desktop to use this configuration file in settings.
-
-### Build from Source
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/akuity/argocd-mcp-server.git
-   cd argocd-mcp-server
-   ```
-
-2. Install project dependencies:
-   ```bash
-   pnpm install
-   ```
-
-3. Create a `.env` file in the root directory:
-   ```env
-   # Uncomment to disable SSL verification (not recommended for production)
-   # NODE_TLS_REJECT_UNAUTHORIZED=0
-
-   ARGOCD_BASE_URL=<your_argocd_url>
-   ARGOCD_API_TOKEN=<your_api_token>
-   ```
-
-4. Start the development server:
-   ```bash
-   # For SSE mode with hot reloading
-   pnpm run dev
-
-   # For stdio mode
-   pnpm run build
-   node dist/argocd-mcp-server.js stdio
-   ```
 
 ### Available Tools
 
@@ -152,3 +115,10 @@ pnpm install
 ARGOCD_BASE_URL=<your_argocd_url>
 ARGOCD_API_TOKEN=<your_api_token>
 ```
+
+4. Start the development server:
+```bash
+# For SSE mode with hot reloading
+pnpm run dev
+```
+Once the server is running, you can utilize the MCP server within Visual Studio Code or other MCP client.
