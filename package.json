@@ -5,7 +5,7 @@
   "main": "dist/argocd-mcp-server",
   "type": "module",
   "bin": {
-    "argocd-mcp-server": "./dist/argocd-mcp-server"
+    "argocd-mcp-server": "./dist/argocd-mcp-server.js"
   },
   "files": [
     "dist",
