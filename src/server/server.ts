@@ -3,16 +3,8 @@ import { McpServer, ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js
 import packageJSON from '../../package.json' with { type: 'json' };
 import { ArgoCDClient } from '../argocd/client.js';
 import { z, ZodRawShape } from 'zod';
-import { ResourceRef } from '../shared/models/models.js';
-
-const resourceRefSchema = z.object({
-  uid: z.string(),
-  kind: z.string(),
-  namespace: z.string(),
-  name: z.string(),
-  version: z.string(),
-  group: z.string()
-});
+import { Application, ResourceRef } from '../shared/models/models.js';
+import { ApplicationSchema, ResourceRefSchema } from '../shared/models/schema.js';
 
 type ServerInfo = {
   argocdBaseUrl: string;
@@ -46,15 +38,16 @@ export class Server extends McpServer {
     this.addJsonOutputTool(
       'create_application',
       'create_application creates application',
-      { application: z.any() },
-      async ({ application }) => await this.argocdClient.createApplication(application)
+      { application: ApplicationSchema },
+      async ({ application }) =>
+        await this.argocdClient.createApplication(application as Application)
     );
     this.addJsonOutputTool(
       'update_application',
       'update_application updates application',
-      { applicationName: z.string(), application: z.any() },
+      { applicationName: z.string(), application: ApplicationSchema },
       async ({ applicationName, application }) =>
-        await this.argocdClient.updateApplication(applicationName, application)
+        await this.argocdClient.updateApplication(applicationName, application as Application)
     );
     this.addJsonOutputTool(
       'delete_application',
@@ -132,7 +125,7 @@ export class Server extends McpServer {
       {
         applicationName: z.string(),
         applicationNamespace: z.string(),
-        resourceRef: resourceRefSchema
+        resourceRef: ResourceRefSchema
       },
       async ({ applicationName, applicationNamespace, resourceRef }) =>
         await this.argocdClient.getResourceActions(
@@ -147,7 +140,7 @@ export class Server extends McpServer {
       {
         applicationName: z.string(),
         applicationNamespace: z.string(),
-        resourceRef: resourceRefSchema,
+        resourceRef: ResourceRefSchema,
         action: z.string()
       },
       async ({ applicationName, applicationNamespace, resourceRef, action }) =>
