@@ -1,6 +1,6 @@
 # ArgoCD MCP Server
 
-An implementation of Model Context Protocol (MCP) server for ArgoCD, enabling AI assistants to interact with your ArgoCD applications through natural language. This server allows for seamless integration with Visual Studio Code and other MCP clients through both stdio and Server-Sent Events (SSE) transport protocols.
+An implementation of [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), enabling AI assistants to interact with your ArgoCD applications through natural language. This server allows for seamless integration with Visual Studio Code and other MCP clients through both stdio and Server-Sent Events (SSE) transport protocols.
 
 ## Features
 
@@ -107,16 +107,7 @@ cd argocd-mcp-server
 pnpm install
 ```
 
-3. Copy the `.env.example` and create a `.env` file in the root directory with your ArgoCD configuration:
-```env
-# Uncomment to disable SSL verification (not recommended for production)
-# NODE_TLS_REJECT_UNAUTHORIZED=0
-
-ARGOCD_BASE_URL=<your_argocd_url>
-ARGOCD_API_TOKEN=<your_api_token>
-```
-
-4. Start the development server with hot reloading enabled:
+3. Start the development server with hot reloading enabled:
 ```bash
 # For SSE mode with hot reloading
 pnpm run dev
