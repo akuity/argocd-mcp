@@ -4,13 +4,13 @@
             "id": "argocd-base-url",
             "type": "promptString",
             "description": "Enter the ArgoCD base URL",
-            "password": false,
+            "password": false
         },
         {
             "id": "argocd-api-token",
             "type": "promptString",
             "description": "Enter the ArgoCD API token",
-            "password": true,
+            "password": true
         }
     ],
     "servers": {
