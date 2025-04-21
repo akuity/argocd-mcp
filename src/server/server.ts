@@ -89,6 +89,21 @@ export class Server extends McpServer {
       async ({ applicationName }) => await this.argocdClient.getApplicationLogs(applicationName)
     );
     this.addJsonOutputTool(
+      'get_application_workload_logs',
+      'get_application_workload_logs returns logs for application workload (Deployment, StatefulSet, Pod, etc.) by application name and resource ref',
+      {
+        applicationName: z.string(),
+        applicationNamespace: z.string(),
+        resourceRef: resourceRefSchema
+      },
+      async ({ applicationName, applicationNamespace, resourceRef }) =>
+        await this.argocdClient.getWorkloadLogs(
+          applicationName,
+          applicationNamespace,
+          resourceRef as ResourceRef
+        )
+    );
+    this.addJsonOutputTool(
       'get_application_pod_logs',
       'get_application_pod_logs returns logs for application pod by application name and pod name',
       { applicationName: z.string(), podName: z.string() },
