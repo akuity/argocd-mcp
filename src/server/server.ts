@@ -4,7 +4,11 @@ import packageJSON from '../../package.json' with { type: 'json' };
 import { ArgoCDClient } from '../argocd/client.js';
 import { z, ZodRawShape } from 'zod';
 import { Application, ResourceRef } from '../shared/models/models.js';
-import { ApplicationSchema, ResourceRefSchema } from '../shared/models/schema.js';
+import {
+  ApplicationNamespaceSchema,
+  ApplicationSchema,
+  ResourceRefSchema
+} from '../shared/models/schema.js';
 
 type ServerInfo = {
   argocdBaseUrl: string;
@@ -80,11 +84,7 @@ export class Server extends McpServer {
       'get_application_workload_logs returns logs for application workload (Deployment, StatefulSet, Pod, etc.) by application name and resource ref',
       {
         applicationName: z.string(),
-        applicationNamespace: z
-          .string()
-          .describe(
-            'Namespace of the application, note the namespace is not always the same as the resource namespace'
-          ),
+        applicationNamespace: ApplicationNamespaceSchema,
         resourceRef: ResourceRefSchema
       },
       async ({ applicationName, applicationNamespace, resourceRef }) =>
@@ -105,11 +105,7 @@ export class Server extends McpServer {
       'get_resource_events returns events for a resource that is managed by an application',
       {
         applicationName: z.string(),
-        applicationNamespace: z
-          .string()
-          .describe(
-            'Namespace of the application, note the namespace is not always the same as the resource namespace'
-          ),
+        applicationNamespace: ApplicationNamespaceSchema,
         resourceUID: z.string(),
         resourceNamespace: z.string(),
         resourceName: z.string()
@@ -134,11 +130,7 @@ export class Server extends McpServer {
       'get_resource_actions returns actions for a resource that is managed by an application',
       {
         applicationName: z.string(),
-        applicationNamespace: z
-          .string()
-          .describe(
-            'Namespace of the application, note the namespace is not always the same as the resource namespace'
-          ),
+        applicationNamespace: ApplicationNamespaceSchema,
         resourceRef: ResourceRefSchema
       },
       async ({ applicationName, applicationNamespace, resourceRef }) =>
@@ -153,11 +145,7 @@ export class Server extends McpServer {
       'run_resource_action runs an action on a resource',
       {
         applicationName: z.string(),
-        applicationNamespace: z
-          .string()
-          .describe(
-            'Namespace of the application, note the namespace is not always the same as the resource namespace'
-          ),
+        applicationNamespace: ApplicationNamespaceSchema,
         resourceRef: ResourceRefSchema,
         action: z.string()
       },
