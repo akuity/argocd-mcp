@@ -8,13 +8,13 @@ An implementation of [Model Context Protocol (MCP)](https://modelcontextprotocol
 - **Complete Argo CD API Integration**: Provides comprehensive access to Argo CD resources and operations
 - **AI Assistant Ready**: Pre-configured tools for AI assistants to interact with Argo CD in natural language
 
-## Prerequisites
+## Installation
+
+### Prerequisites
 
 - Node.js (v18 or higher recommended)
 - pnpm package manager (for development)
 - Argo CD instance with API access
-
-## Installation
 
 ### Usage with VSCode
 
