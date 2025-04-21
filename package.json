@@ -4,12 +4,20 @@
   "description": "ArgoCD MCP Server",
   "main": "dist/argocd-mcp-server",
   "type": "module",
+  "bin": {
+    "argocd-mcp-server": "./dist/argocd-mcp-server"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "dev": "tsx watch src/index.ts sse",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "build": "tsup",
-    "build:watch": "tsup --watch"
+    "build:watch": "tsup --watch",
+    "prepare": "pnpm run build"
   },
   "keywords": [],
   "author": "",

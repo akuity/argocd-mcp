@@ -8,7 +8,10 @@ export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: true,
+  dts: true,
   format: ["esm"],
   target: "es2016",
-  dts: true
+  banner: {
+    js: '#!/usr/bin/env node'
+  }
 })
