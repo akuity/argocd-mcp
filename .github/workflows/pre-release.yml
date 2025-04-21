@@ -3,7 +3,7 @@ name: Pre-release Package
 on:
   push:
     branches:
-      - main
+      - '*'
   workflow_dispatch:
 
 jobs:
