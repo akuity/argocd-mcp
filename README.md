@@ -107,7 +107,7 @@ cd argocd-mcp-server
 pnpm install
 ```
 
-3. Create a `.env` file in the root directory with your ArgoCD configuration:
+3. Copy the `.env.example` and create a `.env` file in the root directory with your ArgoCD configuration:
 ```env
 # Uncomment to disable SSL verification (not recommended for production)
 # NODE_TLS_REJECT_UNAUTHORIZED=0
@@ -116,7 +116,7 @@ ARGOCD_BASE_URL=<your_argocd_url>
 ARGOCD_API_TOKEN=<your_api_token>
 ```
 
-4. Start the development server:
+4. Start the development server with hot reloading enabled:
 ```bash
 # For SSE mode with hot reloading
 pnpm run dev

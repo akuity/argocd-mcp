@@ -14,21 +14,12 @@
         }
     ],
     "servers": {
-        "argocd-mcp-server-stdio": {
-            "type": "stdio",
-            "command": "node",
-            "args": [
-                "${workspaceFolder}/dist/argocd-mcp-server.js",
-                "stdio"
-            ],
-            "envFile": "${workspaceFolder}/.env"
-        },
         "argocd-mcp-server-sse": {
             "type": "sse",
             "url": "http://localhost:3000/sse",
             "headers": {
                 "x-argocd-base-url": "${input:argocd-base-url}",
-                "x-argocd-api-token": "${input:argocd-api-token}",
+                "x-argocd-api-token": "${input:argocd-api-token}"
             }
         }
     }
