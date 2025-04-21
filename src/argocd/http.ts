@@ -4,7 +4,7 @@ export interface HttpResponse<T> {
   body: T;
 }
 
-type SearchParams = Record<string, string | number | undefined | null> | null;
+type SearchParams = Record<string, string | number | boolean | undefined | null> | null;
 
 export class HttpClient {
   public readonly baseUrl: string;
@@ -55,6 +55,7 @@ export class HttpClient {
         urlObject.searchParams.set(key, value?.toString() || '');
       });
     }
+    console.log(urlObject.toString());
     const response = await fetch(urlObject, {
       ...init,
       headers: { ...init?.headers, ...this.headers }
