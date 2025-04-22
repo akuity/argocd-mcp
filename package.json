@@ -20,7 +20,7 @@
     "prepare": "pnpm run build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Akuity, Inc.",
   "license": "Apache-2.0",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.1",
