@@ -2,6 +2,40 @@
 
 An implementation of [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for [Argo CD](https://argo-cd.readthedocs.io/en/stable/), enabling AI assistants to interact with your Argo CD applications through natural language. This server allows for seamless integration with Visual Studio Code and other MCP clients through both stdio and Server-Sent Events (SSE) transport protocols.
 
+<!--
+// Generate using?:
+const config = JSON.stringify({
+  "name": "argocd-mcp",
+  "command": "npx",
+  "args": ["argocd-mcp@latest", "stdio"],
+  "inputs": [
+    {
+      "id": "argocd-base-url",
+      "type": "promptString",
+      "description": "Enter the ArgoCD base URL",
+      "password": false
+    },
+    {
+      "id": "argocd-api-token",
+      "type": "promptString",
+      "description": "Enter the ArgoCD API token",
+      "password": true
+    }
+  ],
+  "env": {
+    "ARGOCD_BASE_URL": "${input:argocd-base-url}",
+    "ARGOCD_API_TOKEN": "${input:argocd-api-token}"
+  }
+});
+const urlForWebsites = `vscode:mcp/install?${encodeURIComponent(config)}`;
+// Github markdown does not allow linking to `vscode:` directly, so you can use our redirect:
+const urlForGithub = `https://insiders.vscode.dev/redirect?url=${encodeURIComponent(urlForWebsites)}`;
+-->
+
+[<img src="https://img.shields.io/badge/VS_Code-VS_Code?style=flat-square&label=Install%20Server&color=0098FF" alt="Install in VS Code">](https://insiders.vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522argocd-mcp%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522argocd-mcp%2540latest%2522%252C%2522stdio%2522%255D%252C%2522inputs%2522%253A%255B%257B%2522id%2522%253A%2522argocd-base-url%2522%252C%2522type%2522%253A%2522promptString%2522%252C%2522description%2522%253A%2522Enter%2520the%2520ArgoCD%2520base%2520URL%2522%252C%2522password%2522%253Afalse%257D%252C%257B%2522id%2522%253A%2522argocd-api-token%2522%252C%2522type%2522%253A%2522promptString%2522%252C%2522description%2522%253A%2522Enter%2520the%2520ArgoCD%2520API%2520token%2522%252C%2522password%2522%253Atrue%257D%255D%252C%2522env%2522%253A%257B%2522ARGOCD_BASE_URL%2522%253A%2522%2524%257Binput%253Aargocd-base-url%257D%2522%252C%2522ARGOCD_API_TOKEN%2522%253A%2522%2524%257Binput%253Aargocd-api-token%257D%2522%257D%257D)  [<img alt="Install in VS Code Insiders" src="https://img.shields.io/badge/VS_Code_Insiders-VS_Code_Insiders?style=flat-square&label=Install%20Server&color=24bfa5">](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522argocd-mcp%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522argocd-mcp%2540latest%2522%252C%2522stdio%2522%255D%252C%2522inputs%2522%253A%255B%257B%2522id%2522%253A%2522argocd-base-url%2522%252C%2522type%2522%253A%2522promptString%2522%252C%2522description%2522%253A%2522Enter%2520the%2520ArgoCD%2520base%2520URL%2522%252C%2522password%2522%253Afalse%257D%252C%257B%2522id%2522%253A%2522argocd-api-token%2522%252C%2522type%2522%253A%2522promptString%2522%252C%2522description%2522%253A%2522Enter%2520the%2520ArgoCD%2520API%2520token%2522%252C%2522password%2522%253Atrue%257D%255D%252C%2522env%2522%253A%257B%2522ARGOCD_BASE_URL%2522%253A%2522%2524%257Binput%253Aargocd-base-url%257D%2522%252C%2522ARGOCD_API_TOKEN%2522%253A%2522%2524%257Binput%253Aargocd-api-token%257D%2522%257D%257D)
+
+
+
 ## Features
 
 - **Transport Protocols**: Supports both stdio and SSE transport modes for flexible integration with different clients
@@ -16,61 +50,86 @@ An implementation of [Model Context Protocol (MCP)](https://modelcontextprotocol
 - pnpm package manager (for development)
 - Argo CD instance with API access
 
+### Usage with Cursor
+1. Follow the [Cursor documentation for MCP support](https://docs.cursor.com/context/model-context-protocol), and create a `.cursor/mcp.json` file in your project:
+```json
+{
+  "mcpServers": {
+    "argocd-mcp": {
+      "command": "npx",
+      "args": [
+        "argocd-mcp",
+        "stdio"
+      ],
+      "env": {
+        "ARGOCD_BASE_URL": "https://your-argocd-server.com",
+        "ARGOCD_API_TOKEN": "your_argocd_token"
+      }
+    }
+  }
+}
+```
+
+2. Start a conversation with Agent mode to use the MCP.
+
 ### Usage with VSCode
 
-1. Create a `.vscode/mcp.json` file in your project:
-   ```json
-   {
-       "inputs": [
-           {
-               "id": "argocd-base-url",
-               "type": "promptString",
-               "description": "Enter the ArgoCD base URL",
-               "password": false
-           },
-           {
-               "id": "argocd-api-token",
-               "type": "promptString",
-               "description": "Enter the ArgoCD API token",
-               "password": true
-           }
-       ],
-       "servers": {
-           "argocd-mcp-server-stdio": {
-               "type": "stdio",
-               "command": "npx",
-               "args": [
-                   "argocd-mcp-server",
-                   "stdio"
-               ],
-               "env": {
-                   "ARGOCD_BASE_URL": "${input:argocd-base-url}",
-                   "ARGOCD_API_TOKEN": "${input:argocd-api-token}"
-               }
-           }
-       }
-   }
-   ```
+1. Follow the [Use MCP servers in VS Code documentation](https://code.visualstudio.com/docs/copilot/chat/mcp-servers), and create a `.vscode/mcp.json` file in your project:
+```json
+{
+  "inputs": [
+    {
+      "id": "argocd-base-url",
+      "type": "promptString",
+      "description": "Enter the ArgoCD base URL",
+      "password": false
+    },
+    {
+      "id": "argocd-api-token",
+      "type": "promptString",
+      "description": "Enter the ArgoCD API token",
+      "password": true
+    }
+  ],
+  "servers": {
+    "argocd-mcp-stdio": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "argocd-mcp",
+        "stdio"
+      ],
+      "env": {
+        "ARGOCD_BASE_URL": "${input:argocd-base-url}",
+        "ARGOCD_API_TOKEN": "${input:argocd-api-token}"
+      }
+    }
+  }
+}
+```
 
 2. Start a conversation with an AI assistant in VS Code that supports MCP.
 
 ### Usage with Claude Desktop
 
-1. Create a `claude_desktop_config.json` configuration file:
-   ```json
-   {
-     "mcpServers": {
-       "argocd-mcp": {
-         "command": "npx",
-         "args": ["argocd-mcp-server", "stdio"],
-         "env": {
-           "ARGOCD_BASE_URL": "https://your-argocd-server.com",
-           "ARGOCD_API_TOKEN": "your_argocd_token"
-         }
-       }
-     }
-   }
-   ```
+1. Follow the [MCP in Claude Desktop documentation](https://modelcontextprotocol.io/quickstart/user), and create a `claude_desktop_config.json` configuration file:
+```json
+{
+  "mcpServers": {
+    "argocd-mcp": {
+      "command": "npx",
+      "args": [
+        "argocd-mcp",
+        "stdio"
+      ],
+      "env": {
+        "ARGOCD_BASE_URL": "https://your-argocd-server.com",
+        "ARGOCD_API_TOKEN": "your_argocd_token"
+      }
+    }
+  }
+}
+```
 
 2. Configure Claude Desktop to use this configuration file in settings.
 
@@ -98,8 +157,8 @@ The server provides the following ArgoCD management tools:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/akuityio/argocd-mcp-server.git
-cd argocd-mcp-server
+git clone https://github.com/akuity/argocd-mcp.git
+cd argocd-mcp
 ```
 
 2. Install project dependencies:
