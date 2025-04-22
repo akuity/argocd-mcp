@@ -2,10 +2,10 @@
   "name": "argocd-mcp",
   "version": "0.0.1",
   "description": "ArgoCD MCP Server",
-  "main": "dist/argocd-mcp.js",
+  "main": "dist/index.js",
   "type": "module",
   "bin": {
-    "argocd-mcp": "./dist/argocd-mcp.js"
+    "argocd-mcp": "./dist/index.js"
   },
   "files": [
     "dist",
