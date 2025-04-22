@@ -17,7 +17,7 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "build": "tsup",
     "build:watch": "tsup --watch",
-    "prepare": "pnpm run build"
+    "prepare": "npm run build"
   },
   "keywords": [],
   "author": "Akuity, Inc.",
