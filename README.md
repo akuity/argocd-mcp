@@ -8,24 +8,10 @@ const config = JSON.stringify({
   "name": "argocd-mcp",
   "command": "npx",
   "args": ["argocd-mcp@latest", "stdio"],
-  "inputs": [
-    {
-      "id": "argocd-base-url",
-      "type": "promptString",
-      "description": "Enter the ArgoCD base URL",
-      "password": false
-    },
-    {
-      "id": "argocd-api-token",
-      "type": "promptString",
-      "description": "Enter the ArgoCD API token",
-      "password": true
-    }
-  ],
   "env": {
-    "ARGOCD_BASE_URL": "${input:argocd-base-url}",
-    "ARGOCD_API_TOKEN": "${input:argocd-api-token}"
-  }
+    "ARGOCD_BASE_URL": "<argocd_url>",
+    "ARGOCD_API_TOKEN": "<argocd_token>"
+  }}
 });
 const urlForWebsites = `vscode:mcp/install?${encodeURIComponent(config)}`;
 // Github markdown does not allow linking to `vscode:` directly, so you can use our redirect:
@@ -58,12 +44,12 @@ const urlForGithub = `https://insiders.vscode.dev/redirect?url=${encodeURICompon
     "argocd-mcp": {
       "command": "npx",
       "args": [
-        "argocd-mcp",
+        "argocd-mcp@latest",
         "stdio"
       ],
       "env": {
-        "ARGOCD_BASE_URL": "https://your-argocd-server.com",
-        "ARGOCD_API_TOKEN": "your_argocd_token"
+        "ARGOCD_BASE_URL": "<argocd_url>",
+        "ARGOCD_API_TOKEN": "<argocd_token>"
       }
     }
   }
@@ -77,31 +63,17 @@ const urlForGithub = `https://insiders.vscode.dev/redirect?url=${encodeURICompon
 1. Follow the [Use MCP servers in VS Code documentation](https://code.visualstudio.com/docs/copilot/chat/mcp-servers), and create a `.vscode/mcp.json` file in your project:
 ```json
 {
-  "inputs": [
-    {
-      "id": "argocd-base-url",
-      "type": "promptString",
-      "description": "Enter the ArgoCD base URL",
-      "password": false
-    },
-    {
-      "id": "argocd-api-token",
-      "type": "promptString",
-      "description": "Enter the ArgoCD API token",
-      "password": true
-    }
-  ],
   "servers": {
     "argocd-mcp-stdio": {
       "type": "stdio",
       "command": "npx",
       "args": [
-        "argocd-mcp",
+        "argocd-mcp@latest",
         "stdio"
       ],
       "env": {
-        "ARGOCD_BASE_URL": "${input:argocd-base-url}",
-        "ARGOCD_API_TOKEN": "${input:argocd-api-token}"
+        "ARGOCD_BASE_URL": "<argocd_url>",
+        "ARGOCD_API_TOKEN": "<argocd_token>"
       }
     }
   }
@@ -119,12 +91,12 @@ const urlForGithub = `https://insiders.vscode.dev/redirect?url=${encodeURICompon
     "argocd-mcp": {
       "command": "npx",
       "args": [
-        "argocd-mcp",
+        "argocd-mcp@latest",
         "stdio"
       ],
       "env": {
-        "ARGOCD_BASE_URL": "https://your-argocd-server.com",
-        "ARGOCD_API_TOKEN": "your_argocd_token"
+        "ARGOCD_BASE_URL": "<argocd_url>",
+        "ARGOCD_API_TOKEN": "<argocd_token>"
       }
     }
   }

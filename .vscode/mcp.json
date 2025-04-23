@@ -1,25 +1,11 @@
 {
-  "inputs": [
-    {
-      "id": "argocd-base-url",
-      "type": "promptString",
-      "description": "Enter the ArgoCD base URL",
-      "password": false
-    },
-    {
-      "id": "argocd-api-token",
-      "type": "promptString",
-      "description": "Enter the ArgoCD API token",
-      "password": true
-    }
-  ],
   "servers": {
     "argocd-mcp-sse": {
       "type": "sse",
       "url": "http://localhost:3000/sse",
       "headers": {
-        "x-argocd-base-url": "${input:argocd-base-url}",
-        "x-argocd-api-token": "${input:argocd-api-token}"
+        "x-argocd-base-url": "<argocd_url>",
+        "x-argocd-api-token": "<argocd_token>"
       }
     }
   }

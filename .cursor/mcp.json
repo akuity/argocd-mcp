@@ -3,13 +3,13 @@
     "argocd-mcp": {
       "command": "npx",
       "args": [
-        "argocd-mcp",
+        "argocd-mcp@latest",
         "stdio"
       ],
       "env": {
         "NODE_TLS_REJECT_UNAUTHORIZED": "0",
-        "ARGOCD_BASE_URL": "https://your-argocd-server.com",
-        "ARGOCD_API_TOKEN": "your_argocd_token"
+        "ARGOCD_BASE_URL": "<argocd_url>",
+        "ARGOCD_API_TOKEN": "<argocd_token>"
       }
     }
   }
