@@ -1,7 +1,25 @@
 {
   "name": "argocd-mcp",
   "version": "0.0.0",
-  "description": "ArgoCD MCP Server",
+  "description": "Argo CD MCP Server",
+  "keywords": [
+    "mcp",
+    "argocd",
+    "argocd-mcp",
+    "argocd-mcp-server",
+    "argo-cd",
+    "argo-cd-mcp",
+    "argo-cd-mcp-server",
+    "cicd",
+    "cicd-mcp",
+    "cicd-mcp-server",
+    "gitops",
+    "gitops-mcp",
+    "gitops-mcp-server",
+    "kubernetes",
+    "kubernetes-mcp",
+    "kubernetes-mcp-server"
+  ],
   "main": "dist/index.js",
   "type": "module",
   "bin": {
@@ -20,7 +38,6 @@
     "build:watch": "tsup --watch",
     "prepare": "npm run build"
   },
-  "keywords": [],
   "author": "Akuity, Inc.",
   "license": "Apache-2.0",
   "dependencies": {
