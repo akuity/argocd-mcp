@@ -41,6 +41,7 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "build": "tsup",
     "build:watch": "tsup --watch",
+    "generate-types": "dtsgen -o src/types/argocd.d.ts swagger.json",
     "prepare": "npm run build"
   },
   "author": "Akuity, Inc.",
@@ -48,6 +49,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.1",
     "dotenv": "^16.5.0",
+    "dtsgenerator": "^3.19.2",
     "express": "^5.1.0",
     "pino": "^9.6.0",
     "yargs": "^17.7.2",
