@@ -22,7 +22,7 @@ const urlForGithub = `https://insiders.vscode.dev/redirect?url=${encodeURICompon
 
 This project is maintained by [Akuity](https://akuity.io/), the creators of Argo Project.
 
-<img align="center" src="https://raw.githubusercontent.com/akuity/awesome-argo/main/images/akuity.png" alt="akuity" width="50%" height="50%">
+<img align="center" src="https://raw.githubusercontent.com/akuity/argocd-mcp/main/images/akuity.png" alt="akuity" width="50%" height="50%">
 
 Akuity is the enterprise company for Argo and Kargo, and provides the essential platform for end-to-end GitOps for Kubernetes. With the Akuity Platform, enterprises can deploy with managed Argo CD, promote seamlessly with Kargo, and gain real-time visibility into their infrastructure using Akuity Monitoring. Akuity was founded by Argo creators Hong Wang, Jesse Suen, and Alexander Matyushentsev, with a mission to empower both Platform and Application teams with the best tools for GitOps at enterprise scale.
 
