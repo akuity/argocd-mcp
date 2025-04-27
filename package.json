@@ -49,7 +49,6 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.1",
     "dotenv": "^16.5.0",
-    "dtsgenerator": "^3.19.2",
     "express": "^5.1.0",
     "pino": "^9.6.0",
     "yargs": "^17.7.2",
@@ -60,6 +59,7 @@
     "@types/express": "^5.0.1",
     "@types/node": "^22.14.1",
     "@types/yargs": "^17.0.33",
+    "dtsgenerator": "^3.19.2",
     "eslint": "^9.25.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",
