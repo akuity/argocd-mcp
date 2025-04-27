@@ -1,19 +1,18 @@
-name: "Lint"
+name: "Lint PR Title"
 
 on:
-  push:
-    branches:
-      - "main"
-  pull_request:
-    branches:
-      - "main"
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
 
 permissions:
   pull-requests: read
 
 jobs:
-  lint-pr:
-    name: Lint PR
+  lint-pr-title:
+    name: Lint PR Title
     runs-on: ubuntu-latest
     steps:
       - uses: amannn/action-semantic-pull-request@v5
