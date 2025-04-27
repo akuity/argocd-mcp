@@ -41,7 +41,7 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "build": "tsup",
     "build:watch": "tsup --watch",
-    "generate-types": "dtsgen -o src/types/argocd.d.ts swagger.json",
+    "generate-types": "dtsgen -c dtsgen.json -o src/types/argocd.d.ts swagger.json",
     "prepare": "npm run build"
   },
   "author": "Akuity, Inc.",
@@ -55,6 +55,7 @@
     "zod": "^3.24.3"
   },
   "devDependencies": {
+    "@dtsgenerator/replace-namespace": "^1.7.0",
     "@eslint/js": "^9.25.0",
     "@types/express": "^5.0.1",
     "@types/node": "^22.14.1",

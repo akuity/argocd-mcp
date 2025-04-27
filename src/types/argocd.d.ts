@@ -1,4 +1,4 @@
-declare namespace Definitions {
+declare namespace ArgoCD {
     export interface AccountAccount {
         capabilities?: string[];
         enabled?: boolean;
@@ -4768,8 +4768,8 @@ declare namespace Paths {
             subresource: Parameters.Subresource;
         }
         namespace Responses {
-            export type $200 = Definitions.AccountCanIResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.AccountCanIResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace AccountServiceCreateToken {
@@ -4777,15 +4777,15 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = Definitions.AccountCreateTokenRequest;
+            export type Body = ArgoCD.AccountCreateTokenRequest;
             export type Name = string;
         }
         export interface PathParameters {
             name: Parameters.Name;
         }
         namespace Responses {
-            export type $200 = Definitions.AccountCreateTokenResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.AccountCreateTokenResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace AccountServiceDeleteToken {
@@ -4798,8 +4798,8 @@ declare namespace Paths {
             id: Parameters.Id;
         }
         namespace Responses {
-            export type $200 = Definitions.AccountEmptyResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.AccountEmptyResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace AccountServiceGetAccount {
@@ -4810,14 +4810,14 @@ declare namespace Paths {
             name: Parameters.Name;
         }
         namespace Responses {
-            export type $200 = Definitions.AccountAccount;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.AccountAccount;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace AccountServiceListAccounts {
         namespace Responses {
-            export type $200 = Definitions.AccountAccountsList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.AccountAccountsList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace AccountServiceUpdatePassword {
@@ -4825,11 +4825,11 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = Definitions.AccountUpdatePasswordRequest;
+            export type Body = ArgoCD.AccountUpdatePasswordRequest;
         }
         namespace Responses {
-            export type $200 = Definitions.AccountUpdatePasswordResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.AccountUpdatePasswordResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceCreate {
@@ -4848,7 +4848,7 @@ declare namespace Paths {
              * +kubebuilder:printcolumn:name="Revision",type=string,JSONPath=`.status.sync.revision`,priority=10
              * +kubebuilder:printcolumn:name="Project",type=string,JSONPath=`.spec.project`,priority=10
              */
-            Definitions.V1alpha1Application;
+            ArgoCD.V1alpha1Application;
             export type Upsert = boolean;
             export type Validate = boolean;
         }
@@ -4868,8 +4868,8 @@ declare namespace Paths {
              * +kubebuilder:printcolumn:name="Revision",type=string,JSONPath=`.status.sync.revision`,priority=10
              * +kubebuilder:printcolumn:name="Project",type=string,JSONPath=`.spec.project`,priority=10
              */
-            Definitions.V1alpha1Application;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1Application;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceDelete {
@@ -4890,8 +4890,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationApplicationResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationApplicationResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceDeleteResource {
@@ -4922,8 +4922,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationApplicationResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationApplicationResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceGet {
@@ -5040,8 +5040,8 @@ declare namespace Paths {
              * +kubebuilder:printcolumn:name="Revision",type=string,JSONPath=`.status.sync.revision`,priority=10
              * +kubebuilder:printcolumn:name="Project",type=string,JSONPath=`.spec.project`,priority=10
              */
-            Definitions.V1alpha1Application;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1Application;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceGetApplicationSyncWindows {
@@ -5058,8 +5058,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationApplicationSyncWindowsResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationApplicationSyncWindowsResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceGetManifests {
@@ -5082,8 +5082,8 @@ declare namespace Paths {
             revisions?: Parameters.Revisions;
         }
         namespace Responses {
-            export type $200 = Definitions.RepositoryManifestResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.RepositoryManifestResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceGetManifestsWithFiles {
@@ -5091,11 +5091,11 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = Definitions.ApplicationApplicationManifestQueryWithFilesWrapper;
+            export type Body = ArgoCD.ApplicationApplicationManifestQueryWithFilesWrapper;
         }
         namespace Responses {
-            export type $200 = Definitions.RepositoryManifestResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.RepositoryManifestResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceGetResource {
@@ -5122,8 +5122,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationApplicationResourceResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationApplicationResourceResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceList {
@@ -5231,8 +5231,8 @@ declare namespace Paths {
              * ApplicationList is list of Application resources
              * +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
              */
-            Definitions.V1alpha1ApplicationList;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1ApplicationList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceListLinks {
@@ -5249,8 +5249,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationLinksResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationLinksResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceListResourceActions {
@@ -5277,8 +5277,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationResourceActionsListResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationResourceActionsListResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceListResourceEvents {
@@ -5301,8 +5301,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = /* EventList is a list of events. */ Definitions.V1EventList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* EventList is a list of events. */ ArgoCD.V1EventList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceListResourceLinks {
@@ -5329,8 +5329,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationLinksResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationLinksResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceManagedResources {
@@ -5357,8 +5357,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationManagedResourcesResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationManagedResourcesResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServicePatch {
@@ -5366,7 +5366,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* ApplicationPatchRequest is a request to patch an application */ Definitions.ApplicationApplicationPatchRequest;
+            export type Body = /* ApplicationPatchRequest is a request to patch an application */ ArgoCD.ApplicationApplicationPatchRequest;
             export type Name = string;
         }
         export interface PathParameters {
@@ -5384,8 +5384,8 @@ declare namespace Paths {
              * +kubebuilder:printcolumn:name="Revision",type=string,JSONPath=`.status.sync.revision`,priority=10
              * +kubebuilder:printcolumn:name="Project",type=string,JSONPath=`.spec.project`,priority=10
              */
-            Definitions.V1alpha1Application;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1Application;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServicePatchResource {
@@ -5418,8 +5418,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationApplicationResourceResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationApplicationResourceResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServicePodLogs {
@@ -5490,10 +5490,10 @@ declare namespace Paths {
              * Stream result of applicationLogEntry
              */
             export interface $200 {
-                error?: Definitions.RuntimeStreamError;
-                result?: Definitions.ApplicationLogEntry;
+                error?: ArgoCD.RuntimeStreamError;
+                result?: ArgoCD.ApplicationLogEntry;
             }
-            export type Default = Definitions.RuntimeError;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServicePodLogs2 {
@@ -5564,10 +5564,10 @@ declare namespace Paths {
              * Stream result of applicationLogEntry
              */
             export interface $200 {
-                error?: Definitions.RuntimeStreamError;
-                result?: Definitions.ApplicationLogEntry;
+                error?: ArgoCD.RuntimeStreamError;
+                result?: ArgoCD.ApplicationLogEntry;
             }
-            export type Default = Definitions.RuntimeError;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceResourceTree {
@@ -5598,8 +5598,8 @@ declare namespace Paths {
              * ApplicationTree holds nodes which belongs to the application
              * TODO: describe purpose of this type
              */
-            Definitions.V1alpha1ApplicationTree;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1ApplicationTree;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceRevisionChartDetails {
@@ -5637,8 +5637,8 @@ declare namespace Paths {
             versionId?: /* versionId from historical data (for multi source apps). */ Parameters.VersionId /* int32 */;
         }
         namespace Responses {
-            export type $200 = /* ChartDetails contains helm chart metadata for a specific version */ Definitions.V1alpha1ChartDetails;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* ChartDetails contains helm chart metadata for a specific version */ ArgoCD.V1alpha1ChartDetails;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceRevisionMetadata {
@@ -5676,8 +5676,8 @@ declare namespace Paths {
             versionId?: /* versionId from historical data (for multi source apps). */ Parameters.VersionId /* int32 */;
         }
         namespace Responses {
-            export type $200 = /* RevisionMetadata contains metadata for a specific revision in a Git repository */ Definitions.V1alpha1RevisionMetadata;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RevisionMetadata contains metadata for a specific revision in a Git repository */ ArgoCD.V1alpha1RevisionMetadata;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceRollback {
@@ -5685,7 +5685,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = Definitions.ApplicationApplicationRollbackRequest;
+            export type Body = ArgoCD.ApplicationApplicationRollbackRequest;
             export type Name = string;
         }
         export interface PathParameters {
@@ -5703,8 +5703,8 @@ declare namespace Paths {
              * +kubebuilder:printcolumn:name="Revision",type=string,JSONPath=`.status.sync.revision`,priority=10
              * +kubebuilder:printcolumn:name="Project",type=string,JSONPath=`.spec.project`,priority=10
              */
-            Definitions.V1alpha1Application;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1Application;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceRunResourceAction {
@@ -5735,8 +5735,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationApplicationResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationApplicationResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceSync {
@@ -5744,7 +5744,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* ApplicationSyncRequest is a request to apply the config state to live state */ Definitions.ApplicationApplicationSyncRequest;
+            export type Body = /* ApplicationSyncRequest is a request to apply the config state to live state */ ArgoCD.ApplicationApplicationSyncRequest;
             export type Name = string;
         }
         export interface PathParameters {
@@ -5762,8 +5762,8 @@ declare namespace Paths {
              * +kubebuilder:printcolumn:name="Revision",type=string,JSONPath=`.status.sync.revision`,priority=10
              * +kubebuilder:printcolumn:name="Project",type=string,JSONPath=`.spec.project`,priority=10
              */
-            Definitions.V1alpha1Application;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1Application;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceTerminateOperation {
@@ -5780,8 +5780,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationOperationTerminateResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationOperationTerminateResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceUpdate {
@@ -5810,7 +5810,7 @@ declare namespace Paths {
              * +kubebuilder:printcolumn:name="Revision",type=string,JSONPath=`.status.sync.revision`,priority=10
              * +kubebuilder:printcolumn:name="Project",type=string,JSONPath=`.spec.project`,priority=10
              */
-            Definitions.V1alpha1Application;
+            ArgoCD.V1alpha1Application;
             export type Project = string;
             export type Validate = boolean;
         }
@@ -5842,8 +5842,8 @@ declare namespace Paths {
              * +kubebuilder:printcolumn:name="Revision",type=string,JSONPath=`.status.sync.revision`,priority=10
              * +kubebuilder:printcolumn:name="Project",type=string,JSONPath=`.spec.project`,priority=10
              */
-            Definitions.V1alpha1Application;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1Application;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceUpdateSpec {
@@ -5852,7 +5852,7 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type AppNamespace = string;
-            export type Body = /* ApplicationSpec represents desired application state. Contains link to repository with application definition and additional parameters link definition revision. */ Definitions.V1alpha1ApplicationSpec;
+            export type Body = /* ApplicationSpec represents desired application state. Contains link to repository with application definition and additional parameters link definition revision. */ ArgoCD.V1alpha1ApplicationSpec;
             export type Name = string;
             export type Project = string;
             export type Validate = boolean;
@@ -5866,8 +5866,8 @@ declare namespace Paths {
             project?: Parameters.Project;
         }
         namespace Responses {
-            export type $200 = /* ApplicationSpec represents desired application state. Contains link to repository with application definition and additional parameters link definition revision. */ Definitions.V1alpha1ApplicationSpec;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* ApplicationSpec represents desired application state. Contains link to repository with application definition and additional parameters link definition revision. */ ArgoCD.V1alpha1ApplicationSpec;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceWatch {
@@ -5975,10 +5975,10 @@ declare namespace Paths {
              * Stream result of v1alpha1ApplicationWatchEvent
              */
             export interface $200 {
-                error?: Definitions.RuntimeStreamError;
-                result?: /* ApplicationWatchEvent contains information about application change. */ Definitions.V1alpha1ApplicationWatchEvent;
+                error?: ArgoCD.RuntimeStreamError;
+                result?: /* ApplicationWatchEvent contains information about application change. */ ArgoCD.V1alpha1ApplicationWatchEvent;
             }
-            export type Default = Definitions.RuntimeError;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationServiceWatchResourceTree {
@@ -6009,14 +6009,14 @@ declare namespace Paths {
              * Stream result of v1alpha1ApplicationTree
              */
             export interface $200 {
-                error?: Definitions.RuntimeStreamError;
+                error?: ArgoCD.RuntimeStreamError;
                 result?: /**
                  * ApplicationTree holds nodes which belongs to the application
                  * TODO: describe purpose of this type
                  */
-                Definitions.V1alpha1ApplicationTree;
+                ArgoCD.V1alpha1ApplicationTree;
             }
-            export type Default = Definitions.RuntimeError;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationSetServiceCreate {
@@ -6032,7 +6032,7 @@ declare namespace Paths {
              * +kubebuilder:resource:path=applicationsets,shortName=appset;appsets
              * +kubebuilder:subresource:status
              */
-            Definitions.V1alpha1ApplicationSet;
+            ArgoCD.V1alpha1ApplicationSet;
             export type DryRun = boolean;
             export type Upsert = boolean;
         }
@@ -6049,8 +6049,8 @@ declare namespace Paths {
              * +kubebuilder:resource:path=applicationsets,shortName=appset;appsets
              * +kubebuilder:subresource:status
              */
-            Definitions.V1alpha1ApplicationSet;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1ApplicationSet;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationSetServiceDelete {
@@ -6068,8 +6068,8 @@ declare namespace Paths {
             appsetNamespace?: /* The application set namespace. Default empty is argocd control plane namespace. */ Parameters.AppsetNamespace;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationsetApplicationSetResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationsetApplicationSetResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationSetServiceGenerate {
@@ -6077,11 +6077,11 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* ApplicationSetGetQuery is a query for applicationset resources */ Definitions.ApplicationsetApplicationSetGenerateRequest;
+            export type Body = /* ApplicationSetGetQuery is a query for applicationset resources */ ArgoCD.ApplicationsetApplicationSetGenerateRequest;
         }
         namespace Responses {
-            export type $200 = /* ApplicationSetGenerateResponse is a response for applicationset generate request */ Definitions.ApplicationsetApplicationSetGenerateResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* ApplicationSetGenerateResponse is a response for applicationset generate request */ ArgoCD.ApplicationsetApplicationSetGenerateResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationSetServiceGet {
@@ -6110,8 +6110,8 @@ declare namespace Paths {
              * +kubebuilder:resource:path=applicationsets,shortName=appset;appsets
              * +kubebuilder:subresource:status
              */
-            Definitions.V1alpha1ApplicationSet;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1ApplicationSet;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationSetServiceList {
@@ -6140,8 +6140,8 @@ declare namespace Paths {
              * +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
              * +kubebuilder:object:root=true
              */
-            Definitions.V1alpha1ApplicationSetList;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1ApplicationSetList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ApplicationSetServiceResourceTree {
@@ -6163,8 +6163,8 @@ declare namespace Paths {
              * ApplicationSetTree holds nodes which belongs to the application
              * Used to build a tree of an ApplicationSet and its children
              */
-            Definitions.V1alpha1ApplicationSetTree;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1ApplicationSetTree;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace CertificateServiceCreateCertificate {
@@ -6172,7 +6172,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* RepositoryCertificateList is a collection of RepositoryCertificates */ Definitions.V1alpha1RepositoryCertificateList;
+            export type Body = /* RepositoryCertificateList is a collection of RepositoryCertificates */ ArgoCD.V1alpha1RepositoryCertificateList;
             /**
              * Whether to upsert already existing certificates.
              */
@@ -6182,8 +6182,8 @@ declare namespace Paths {
             upsert?: /* Whether to upsert already existing certificates. */ Parameters.Upsert;
         }
         namespace Responses {
-            export type $200 = /* RepositoryCertificateList is a collection of RepositoryCertificates */ Definitions.V1alpha1RepositoryCertificateList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepositoryCertificateList is a collection of RepositoryCertificates */ ArgoCD.V1alpha1RepositoryCertificateList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace CertificateServiceDeleteCertificate {
@@ -6207,8 +6207,8 @@ declare namespace Paths {
             certSubType?: /* The sub type of the certificate to match (protocol dependent, usually only used for ssh certs). */ Parameters.CertSubType;
         }
         namespace Responses {
-            export type $200 = /* RepositoryCertificateList is a collection of RepositoryCertificates */ Definitions.V1alpha1RepositoryCertificateList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepositoryCertificateList is a collection of RepositoryCertificates */ ArgoCD.V1alpha1RepositoryCertificateList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace CertificateServiceListCertificates {
@@ -6232,8 +6232,8 @@ declare namespace Paths {
             certSubType?: /* The sub type of the certificate to match (protocol dependent, usually only used for ssh certs). */ Parameters.CertSubType;
         }
         namespace Responses {
-            export type $200 = /* RepositoryCertificateList is a collection of RepositoryCertificates */ Definitions.V1alpha1RepositoryCertificateList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepositoryCertificateList is a collection of RepositoryCertificates */ ArgoCD.V1alpha1RepositoryCertificateList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ClusterServiceCreate {
@@ -6241,15 +6241,15 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* Cluster is the definition of a cluster resource */ Definitions.V1alpha1Cluster;
+            export type Body = /* Cluster is the definition of a cluster resource */ ArgoCD.V1alpha1Cluster;
             export type Upsert = boolean;
         }
         export interface QueryParameters {
             upsert?: Parameters.Upsert;
         }
         namespace Responses {
-            export type $200 = /* Cluster is the definition of a cluster resource */ Definitions.V1alpha1Cluster;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Cluster is the definition of a cluster resource */ ArgoCD.V1alpha1Cluster;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ClusterServiceDelete {
@@ -6274,8 +6274,8 @@ declare namespace Paths {
             "id.type"?: /* type is the type of the specified cluster identifier ( "server" - default, "name" ). */ Parameters.IdType;
         }
         namespace Responses {
-            export type $200 = Definitions.ClusterClusterResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ClusterClusterResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ClusterServiceGet {
@@ -6300,8 +6300,8 @@ declare namespace Paths {
             "id.type"?: /* type is the type of the specified cluster identifier ( "server" - default, "name" ). */ Parameters.IdType;
         }
         namespace Responses {
-            export type $200 = /* Cluster is the definition of a cluster resource */ Definitions.V1alpha1Cluster;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Cluster is the definition of a cluster resource */ ArgoCD.V1alpha1Cluster;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ClusterServiceInvalidateCache {
@@ -6315,8 +6315,8 @@ declare namespace Paths {
             "id.value": /* value holds the cluster server URL or cluster name */ Parameters.IdValue;
         }
         namespace Responses {
-            export type $200 = /* Cluster is the definition of a cluster resource */ Definitions.V1alpha1Cluster;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Cluster is the definition of a cluster resource */ ArgoCD.V1alpha1Cluster;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ClusterServiceList {
@@ -6339,8 +6339,8 @@ declare namespace Paths {
             "id.value"?: /* value holds the cluster server URL or cluster name. */ Parameters.IdValue;
         }
         namespace Responses {
-            export type $200 = /* ClusterList is a collection of Clusters. */ Definitions.V1alpha1ClusterList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* ClusterList is a collection of Clusters. */ ArgoCD.V1alpha1ClusterList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ClusterServiceRotateAuth {
@@ -6354,8 +6354,8 @@ declare namespace Paths {
             "id.value": /* value holds the cluster server URL or cluster name */ Parameters.IdValue;
         }
         namespace Responses {
-            export type $200 = Definitions.ClusterClusterResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ClusterClusterResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ClusterServiceUpdate {
@@ -6363,7 +6363,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* Cluster is the definition of a cluster resource */ Definitions.V1alpha1Cluster;
+            export type Body = /* Cluster is the definition of a cluster resource */ ArgoCD.V1alpha1Cluster;
             /**
              * type is the type of the specified cluster identifier ( "server" - default, "name" ).
              */
@@ -6382,8 +6382,8 @@ declare namespace Paths {
             "id.type"?: /* type is the type of the specified cluster identifier ( "server" - default, "name" ). */ Parameters.IdType;
         }
         namespace Responses {
-            export type $200 = /* Cluster is the definition of a cluster resource */ Definitions.V1alpha1Cluster;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Cluster is the definition of a cluster resource */ ArgoCD.V1alpha1Cluster;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace GPGKeyServiceCreate {
@@ -6391,7 +6391,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* GnuPGPublicKey is a representation of a GnuPG public key */ Definitions.V1alpha1GnuPGPublicKey;
+            export type Body = /* GnuPGPublicKey is a representation of a GnuPG public key */ ArgoCD.V1alpha1GnuPGPublicKey;
             /**
              * Whether to upsert already existing public keys.
              */
@@ -6401,8 +6401,8 @@ declare namespace Paths {
             upsert?: /* Whether to upsert already existing public keys. */ Parameters.Upsert;
         }
         namespace Responses {
-            export type $200 = /* Response to a public key creation request */ Definitions.GpgkeyGnuPGPublicKeyCreateResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Response to a public key creation request */ ArgoCD.GpgkeyGnuPGPublicKeyCreateResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace GPGKeyServiceDelete {
@@ -6416,8 +6416,8 @@ declare namespace Paths {
             keyID?: /* The GPG key ID to query for. */ Parameters.KeyID;
         }
         namespace Responses {
-            export type $200 = /* Generic (empty) response for GPG public key CRUD requests */ Definitions.GpgkeyGnuPGPublicKeyResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Generic (empty) response for GPG public key CRUD requests */ ArgoCD.GpgkeyGnuPGPublicKeyResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace GPGKeyServiceGet {
@@ -6431,8 +6431,8 @@ declare namespace Paths {
             keyID: /* The GPG key ID to query for */ Parameters.KeyID;
         }
         namespace Responses {
-            export type $200 = /* GnuPGPublicKey is a representation of a GnuPG public key */ Definitions.V1alpha1GnuPGPublicKey;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* GnuPGPublicKey is a representation of a GnuPG public key */ ArgoCD.V1alpha1GnuPGPublicKey;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace GPGKeyServiceList {
@@ -6446,26 +6446,26 @@ declare namespace Paths {
             keyID?: /* The GPG key ID to query for. */ Parameters.KeyID;
         }
         namespace Responses {
-            export type $200 = /* GnuPGPublicKeyList is a collection of GnuPGPublicKey objects */ Definitions.V1alpha1GnuPGPublicKeyList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* GnuPGPublicKeyList is a collection of GnuPGPublicKey objects */ ArgoCD.V1alpha1GnuPGPublicKeyList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace NotificationServiceListServices {
         namespace Responses {
-            export type $200 = Definitions.NotificationServiceList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.NotificationServiceList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace NotificationServiceListTemplates {
         namespace Responses {
-            export type $200 = Definitions.NotificationTemplateList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.NotificationTemplateList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace NotificationServiceListTriggers {
         namespace Responses {
-            export type $200 = Definitions.NotificationTriggerList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.NotificationTriggerList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceCreate {
@@ -6473,7 +6473,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* ProjectCreateRequest defines project creation parameters. */ Definitions.ProjectProjectCreateRequest;
+            export type Body = /* ProjectCreateRequest defines project creation parameters. */ ArgoCD.ProjectProjectCreateRequest;
         }
         namespace Responses {
             export type $200 = /**
@@ -6488,8 +6488,8 @@ declare namespace Paths {
              * +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
              * +kubebuilder:resource:path=appprojects,shortName=appproj;appprojs
              */
-            Definitions.V1alpha1AppProject;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1AppProject;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceCreateToken {
@@ -6497,7 +6497,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* ProjectTokenCreateRequest defines project token creation parameters. */ Definitions.ProjectProjectTokenCreateRequest;
+            export type Body = /* ProjectTokenCreateRequest defines project token creation parameters. */ ArgoCD.ProjectProjectTokenCreateRequest;
             export type Project = string;
             export type Role = string;
         }
@@ -6506,8 +6506,8 @@ declare namespace Paths {
             role: Parameters.Role;
         }
         namespace Responses {
-            export type $200 = /* ProjectTokenResponse wraps the created token or returns an empty string if deleted. */ Definitions.ProjectProjectTokenResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* ProjectTokenResponse wraps the created token or returns an empty string if deleted. */ ArgoCD.ProjectProjectTokenResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceDelete {
@@ -6518,8 +6518,8 @@ declare namespace Paths {
             name: Parameters.Name;
         }
         namespace Responses {
-            export type $200 = Definitions.ProjectEmptyResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ProjectEmptyResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceDeleteToken {
@@ -6538,8 +6538,8 @@ declare namespace Paths {
             id?: Parameters.Id;
         }
         namespace Responses {
-            export type $200 = Definitions.ProjectEmptyResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ProjectEmptyResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceGet {
@@ -6562,8 +6562,8 @@ declare namespace Paths {
              * +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
              * +kubebuilder:resource:path=appprojects,shortName=appproj;appprojs
              */
-            Definitions.V1alpha1AppProject;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1AppProject;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceGetDetailedProject {
@@ -6574,8 +6574,8 @@ declare namespace Paths {
             name: Parameters.Name;
         }
         namespace Responses {
-            export type $200 = Definitions.ProjectDetailedProjectsResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ProjectDetailedProjectsResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceGetGlobalProjects {
@@ -6586,8 +6586,8 @@ declare namespace Paths {
             name: Parameters.Name;
         }
         namespace Responses {
-            export type $200 = Definitions.ProjectGlobalProjectsResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ProjectGlobalProjectsResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceGetSyncWindowsState {
@@ -6598,8 +6598,8 @@ declare namespace Paths {
             name: Parameters.Name;
         }
         namespace Responses {
-            export type $200 = Definitions.ProjectSyncWindowsResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ProjectSyncWindowsResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceList {
@@ -6614,8 +6614,8 @@ declare namespace Paths {
              * AppProjectList is list of AppProject resources
              * +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
              */
-            Definitions.V1alpha1AppProjectList;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1AppProjectList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceListEvents {
@@ -6626,8 +6626,8 @@ declare namespace Paths {
             name: Parameters.Name;
         }
         namespace Responses {
-            export type $200 = /* EventList is a list of events. */ Definitions.V1EventList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* EventList is a list of events. */ ArgoCD.V1EventList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceListLinks {
@@ -6638,8 +6638,8 @@ declare namespace Paths {
             name: Parameters.Name;
         }
         namespace Responses {
-            export type $200 = Definitions.ApplicationLinksResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ApplicationLinksResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace ProjectServiceUpdate {
@@ -6647,7 +6647,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = Definitions.ProjectProjectUpdateRequest;
+            export type Body = ArgoCD.ProjectProjectUpdateRequest;
             /**
              * Name must be unique within a namespace. Is required when creating resources, although
              * some resources may allow a client to request the generation of an appropriate name
@@ -6684,8 +6684,8 @@ declare namespace Paths {
              * +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
              * +kubebuilder:resource:path=appprojects,shortName=appproj;appprojs
              */
-            Definitions.V1alpha1AppProject;
-            export type Default = Definitions.RuntimeError;
+            ArgoCD.V1alpha1AppProject;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepoCredsServiceCreateRepositoryCredentials {
@@ -6693,7 +6693,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* RepoCreds holds the definition for repository credentials */ Definitions.V1alpha1RepoCreds;
+            export type Body = /* RepoCreds holds the definition for repository credentials */ ArgoCD.V1alpha1RepoCreds;
             /**
              * Whether to create in upsert mode.
              */
@@ -6703,8 +6703,8 @@ declare namespace Paths {
             upsert?: /* Whether to create in upsert mode. */ Parameters.Upsert;
         }
         namespace Responses {
-            export type $200 = /* RepoCreds holds the definition for repository credentials */ Definitions.V1alpha1RepoCreds;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepoCreds holds the definition for repository credentials */ ArgoCD.V1alpha1RepoCreds;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepoCredsServiceCreateWriteRepositoryCredentials {
@@ -6712,7 +6712,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* RepoCreds holds the definition for repository credentials */ Definitions.V1alpha1RepoCreds;
+            export type Body = /* RepoCreds holds the definition for repository credentials */ ArgoCD.V1alpha1RepoCreds;
             /**
              * Whether to create in upsert mode.
              */
@@ -6722,8 +6722,8 @@ declare namespace Paths {
             upsert?: /* Whether to create in upsert mode. */ Parameters.Upsert;
         }
         namespace Responses {
-            export type $200 = /* RepoCreds holds the definition for repository credentials */ Definitions.V1alpha1RepoCreds;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepoCreds holds the definition for repository credentials */ ArgoCD.V1alpha1RepoCreds;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepoCredsServiceDeleteRepositoryCredentials {
@@ -6734,8 +6734,8 @@ declare namespace Paths {
             url: Parameters.Url;
         }
         namespace Responses {
-            export type $200 = /* RepoCredsResponse is a response to most repository credentials requests */ Definitions.RepocredsRepoCredsResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepoCredsResponse is a response to most repository credentials requests */ ArgoCD.RepocredsRepoCredsResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepoCredsServiceDeleteWriteRepositoryCredentials {
@@ -6746,8 +6746,8 @@ declare namespace Paths {
             url: Parameters.Url;
         }
         namespace Responses {
-            export type $200 = /* RepoCredsResponse is a response to most repository credentials requests */ Definitions.RepocredsRepoCredsResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepoCredsResponse is a response to most repository credentials requests */ ArgoCD.RepocredsRepoCredsResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepoCredsServiceListRepositoryCredentials {
@@ -6761,8 +6761,8 @@ declare namespace Paths {
             url?: /* Repo URL for query. */ Parameters.Url;
         }
         namespace Responses {
-            export type $200 = /* RepositoryList is a collection of Repositories. */ Definitions.V1alpha1RepoCredsList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepositoryList is a collection of Repositories. */ ArgoCD.V1alpha1RepoCredsList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepoCredsServiceListWriteRepositoryCredentials {
@@ -6776,8 +6776,8 @@ declare namespace Paths {
             url?: /* Repo URL for query. */ Parameters.Url;
         }
         namespace Responses {
-            export type $200 = /* RepositoryList is a collection of Repositories. */ Definitions.V1alpha1RepoCredsList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepositoryList is a collection of Repositories. */ ArgoCD.V1alpha1RepoCredsList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepoCredsServiceUpdateRepositoryCredentials {
@@ -6785,7 +6785,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* RepoCreds holds the definition for repository credentials */ Definitions.V1alpha1RepoCreds;
+            export type Body = /* RepoCreds holds the definition for repository credentials */ ArgoCD.V1alpha1RepoCreds;
             /**
              * URL is the URL to which these credentials match
              */
@@ -6795,8 +6795,8 @@ declare namespace Paths {
             "creds.url": /* URL is the URL to which these credentials match */ Parameters.CredsUrl;
         }
         namespace Responses {
-            export type $200 = /* RepoCreds holds the definition for repository credentials */ Definitions.V1alpha1RepoCreds;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepoCreds holds the definition for repository credentials */ ArgoCD.V1alpha1RepoCreds;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepoCredsServiceUpdateWriteRepositoryCredentials {
@@ -6804,7 +6804,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* RepoCreds holds the definition for repository credentials */ Definitions.V1alpha1RepoCreds;
+            export type Body = /* RepoCreds holds the definition for repository credentials */ ArgoCD.V1alpha1RepoCreds;
             /**
              * URL is the URL to which these credentials match
              */
@@ -6814,8 +6814,8 @@ declare namespace Paths {
             "creds.url": /* URL is the URL to which these credentials match */ Parameters.CredsUrl;
         }
         namespace Responses {
-            export type $200 = /* RepoCreds holds the definition for repository credentials */ Definitions.V1alpha1RepoCreds;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepoCreds holds the definition for repository credentials */ ArgoCD.V1alpha1RepoCreds;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceCreateRepository {
@@ -6823,7 +6823,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* Repository is a repository holding application configurations */ Definitions.V1alpha1Repository;
+            export type Body = /* Repository is a repository holding application configurations */ ArgoCD.V1alpha1Repository;
             /**
              * Whether to operate on credential set instead of repository.
              */
@@ -6838,8 +6838,8 @@ declare namespace Paths {
             credsOnly?: /* Whether to operate on credential set instead of repository. */ Parameters.CredsOnly;
         }
         namespace Responses {
-            export type $200 = /* Repository is a repository holding application configurations */ Definitions.V1alpha1Repository;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Repository is a repository holding application configurations */ ArgoCD.V1alpha1Repository;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceCreateWriteRepository {
@@ -6847,7 +6847,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* Repository is a repository holding application configurations */ Definitions.V1alpha1Repository;
+            export type Body = /* Repository is a repository holding application configurations */ ArgoCD.V1alpha1Repository;
             /**
              * Whether to operate on credential set instead of repository.
              */
@@ -6862,8 +6862,8 @@ declare namespace Paths {
             credsOnly?: /* Whether to operate on credential set instead of repository. */ Parameters.CredsOnly;
         }
         namespace Responses {
-            export type $200 = /* Repository is a repository holding application configurations */ Definitions.V1alpha1Repository;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Repository is a repository holding application configurations */ ArgoCD.V1alpha1Repository;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceDeleteRepository {
@@ -6889,8 +6889,8 @@ declare namespace Paths {
             appProject?: /* App project for query. */ Parameters.AppProject;
         }
         namespace Responses {
-            export type $200 = Definitions.RepositoryRepoResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.RepositoryRepoResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceDeleteWriteRepository {
@@ -6916,8 +6916,8 @@ declare namespace Paths {
             appProject?: /* App project for query. */ Parameters.AppProject;
         }
         namespace Responses {
-            export type $200 = Definitions.RepositoryRepoResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.RepositoryRepoResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceGet {
@@ -6943,8 +6943,8 @@ declare namespace Paths {
             appProject?: /* App project for query. */ Parameters.AppProject;
         }
         namespace Responses {
-            export type $200 = /* Repository is a repository holding application configurations */ Definitions.V1alpha1Repository;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Repository is a repository holding application configurations */ ArgoCD.V1alpha1Repository;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceGetAppDetails {
@@ -6952,7 +6952,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* RepoAppDetailsQuery contains query information for app details request */ Definitions.RepositoryRepoAppDetailsQuery;
+            export type Body = /* RepoAppDetailsQuery contains query information for app details request */ ArgoCD.RepositoryRepoAppDetailsQuery;
             /**
              * RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
              */
@@ -6962,8 +6962,8 @@ declare namespace Paths {
             "source.repoURL": /* RepoURL is the URL to the repository (Git or Helm) that contains the application manifests */ Parameters.SourceRepoURL;
         }
         namespace Responses {
-            export type $200 = /* RepoAppDetailsResponse application details */ Definitions.RepositoryRepoAppDetailsResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepoAppDetailsResponse application details */ ArgoCD.RepositoryRepoAppDetailsResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceGetHelmCharts {
@@ -6989,8 +6989,8 @@ declare namespace Paths {
             appProject?: /* App project for query. */ Parameters.AppProject;
         }
         namespace Responses {
-            export type $200 = Definitions.RepositoryHelmChartsResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.RepositoryHelmChartsResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceGetWrite {
@@ -7016,8 +7016,8 @@ declare namespace Paths {
             appProject?: /* App project for query. */ Parameters.AppProject;
         }
         namespace Responses {
-            export type $200 = /* Repository is a repository holding application configurations */ Definitions.V1alpha1Repository;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Repository is a repository holding application configurations */ ArgoCD.V1alpha1Repository;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceListApps {
@@ -7036,8 +7036,8 @@ declare namespace Paths {
             appProject?: Parameters.AppProject;
         }
         namespace Responses {
-            export type $200 = /* RepoAppsResponse contains applications of specified repository */ Definitions.RepositoryRepoAppsResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepoAppsResponse contains applications of specified repository */ ArgoCD.RepositoryRepoAppsResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceListRefs {
@@ -7063,8 +7063,8 @@ declare namespace Paths {
             appProject?: /* App project for query. */ Parameters.AppProject;
         }
         namespace Responses {
-            export type $200 = /* A subset of the repository's named refs */ Definitions.RepositoryRefs;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* A subset of the repository's named refs */ ArgoCD.RepositoryRefs;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceListRepositories {
@@ -7088,8 +7088,8 @@ declare namespace Paths {
             appProject?: /* App project for query. */ Parameters.AppProject;
         }
         namespace Responses {
-            export type $200 = /* RepositoryList is a collection of Repositories. */ Definitions.V1alpha1RepositoryList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepositoryList is a collection of Repositories. */ ArgoCD.V1alpha1RepositoryList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceListWriteRepositories {
@@ -7113,8 +7113,8 @@ declare namespace Paths {
             appProject?: /* App project for query. */ Parameters.AppProject;
         }
         namespace Responses {
-            export type $200 = /* RepositoryList is a collection of Repositories. */ Definitions.V1alpha1RepositoryList;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* RepositoryList is a collection of Repositories. */ ArgoCD.V1alpha1RepositoryList;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceUpdateRepository {
@@ -7122,7 +7122,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* Repository is a repository holding application configurations */ Definitions.V1alpha1Repository;
+            export type Body = /* Repository is a repository holding application configurations */ ArgoCD.V1alpha1Repository;
             /**
              * Repo contains the URL to the remote repository
              */
@@ -7132,8 +7132,8 @@ declare namespace Paths {
             "repo.repo": /* Repo contains the URL to the remote repository */ Parameters.RepoRepo;
         }
         namespace Responses {
-            export type $200 = /* Repository is a repository holding application configurations */ Definitions.V1alpha1Repository;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Repository is a repository holding application configurations */ ArgoCD.V1alpha1Repository;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceUpdateWriteRepository {
@@ -7141,7 +7141,7 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* Repository is a repository holding application configurations */ Definitions.V1alpha1Repository;
+            export type Body = /* Repository is a repository holding application configurations */ ArgoCD.V1alpha1Repository;
             /**
              * Repo contains the URL to the remote repository
              */
@@ -7151,8 +7151,8 @@ declare namespace Paths {
             "repo.repo": /* Repo contains the URL to the remote repository */ Parameters.RepoRepo;
         }
         namespace Responses {
-            export type $200 = /* Repository is a repository holding application configurations */ Definitions.V1alpha1Repository;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* Repository is a repository holding application configurations */ ArgoCD.V1alpha1Repository;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceValidateAccess {
@@ -7257,8 +7257,8 @@ declare namespace Paths {
             forceHttpBasicAuth?: /* Whether to force HTTP basic auth. */ Parameters.ForceHttpBasicAuth;
         }
         namespace Responses {
-            export type $200 = Definitions.RepositoryRepoResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.RepositoryRepoResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace RepositoryServiceValidateWriteAccess {
@@ -7363,8 +7363,8 @@ declare namespace Paths {
             forceHttpBasicAuth?: /* Whether to force HTTP basic auth. */ Parameters.ForceHttpBasicAuth;
         }
         namespace Responses {
-            export type $200 = Definitions.RepositoryRepoResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.RepositoryRepoResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace SessionServiceCreate {
@@ -7372,41 +7372,41 @@ declare namespace Paths {
             body: Parameters.Body;
         }
         namespace Parameters {
-            export type Body = /* SessionCreateRequest is for logging in. */ Definitions.SessionSessionCreateRequest;
+            export type Body = /* SessionCreateRequest is for logging in. */ ArgoCD.SessionSessionCreateRequest;
         }
         namespace Responses {
-            export type $200 = /* SessionResponse wraps the created token or returns an empty string if deleted. */ Definitions.SessionSessionResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* SessionResponse wraps the created token or returns an empty string if deleted. */ ArgoCD.SessionSessionResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace SessionServiceDelete {
         namespace Responses {
-            export type $200 = /* SessionResponse wraps the created token or returns an empty string if deleted. */ Definitions.SessionSessionResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* SessionResponse wraps the created token or returns an empty string if deleted. */ ArgoCD.SessionSessionResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace SessionServiceGetUserInfo {
         namespace Responses {
-            export type $200 = /* The current user's userInfo info */ Definitions.SessionGetUserInfoResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* The current user's userInfo info */ ArgoCD.SessionGetUserInfoResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace SettingsServiceGet {
         namespace Responses {
-            export type $200 = Definitions.ClusterSettings;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ClusterSettings;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace SettingsServiceGetPlugins {
         namespace Responses {
-            export type $200 = Definitions.ClusterSettingsPluginsResponse;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = ArgoCD.ClusterSettingsPluginsResponse;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
     namespace VersionServiceVersion {
         namespace Responses {
-            export type $200 = /* VersionMessage represents version of the Argo CD API server */ Definitions.VersionVersionMessage;
-            export type Default = Definitions.RuntimeError;
+            export type $200 = /* VersionMessage represents version of the Argo CD API server */ ArgoCD.VersionVersionMessage;
+            export type Default = ArgoCD.RuntimeError;
         }
     }
 }
