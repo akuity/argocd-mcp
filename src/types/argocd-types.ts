@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path="./argocd.d.ts" />
 
 // Export types you need from the argocd.d.ts file for use in your project

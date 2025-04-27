@@ -10,4 +10,7 @@ export default tseslint.config(
   tseslint.configs.recommended,
   prettierConfig,
   eslintPluginPrettier,
+  {
+    ignores: ['node_modules/**', 'dist/**', 'src/types/argocd.d.ts']
+  }
 );
