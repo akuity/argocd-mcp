@@ -2,6 +2,10 @@
 
 An implementation of [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for [Argo CD](https://argo-cd.readthedocs.io/en/stable/), enabling AI assistants to interact with your Argo CD applications through natural language. This server allows for seamless integration with Visual Studio Code and other MCP clients through both stdio and Server-Sent Events (SSE) transport protocols.
 
+<a href="https://glama.ai/mcp/servers/@akuity/argocd-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@akuity/argocd-mcp/badge" alt="argocd-mcp MCP server" />
+</a>
+
 <!--
 // Generate using?:
 const config = JSON.stringify({
