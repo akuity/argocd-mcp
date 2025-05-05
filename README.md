@@ -149,6 +149,15 @@ pnpm run dev
 ```
 Once the server is running, you can utilize the MCP server within Visual Studio Code or other MCP client.
 
+## Running evals
+
+The evals package loads an mcp client that then runs the index.ts file, so there is no need to rebuild between tests. You can load environment variables by prefixing the npx command. Full documentation can be found [here](https://www.mcpevals.io/docs).
+
+```bash
+OPENAI_API_KEY=your-key  npx mcp-eval src/evals/evals.ts src/index.ts
+```
+
+
 ## Upgrading ArgoCD Types
 
 To update the TypeScript type definitions based on the latest Argo CD API specification:
