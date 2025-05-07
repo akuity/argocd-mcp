@@ -52,8 +52,7 @@ export const ApplicationSchema = z.object({
     })
       .refine(
         data =>
-          (data.server === undefined && data.name !== undefined) ||
-          (data.server !== undefined && data.name === undefined),
+          (!data.server && !!data.name) || (!!data.server && !data.name),
         {
           message: "Only one of server or name must be specified in destination"
         }
