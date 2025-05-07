@@ -29,7 +29,12 @@ export class Server extends McpServer {
       'list_applications',
       'list_applications returns list of applications',
       {
-        search: z.string().nullish().describe('Search applications by name, optional')
+        search: z
+          .string()
+          .nullish()
+          .describe(
+            'Search applications by name. This is a partial match on the application name and does not support glob patterns (e.g. "*"). Optional.'
+          )
       },
       async ({ search }) =>
         await this.argocdClient.listApplications({ search: search ?? undefined })
