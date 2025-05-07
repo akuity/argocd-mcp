@@ -153,17 +153,17 @@ pnpm run dev
 ```
 Once the server is running, you can utilize the MCP server within Visual Studio Code or other MCP client.
 
-## Upgrading ArgoCD Types
+### Upgrading ArgoCD Types
 
 To update the TypeScript type definitions based on the latest Argo CD API specification:
 
-1.  Download the `swagger.json` file from the [ArgoCD release page](https://github.com/argoproj/argo-cd/releases), for example here is the [swagger.json link](https://github.com/argoproj/argo-cd/blob/v2.14.11/assets/swagger.json) for ArgoCD v2.14.11.
+1. Download the `swagger.json` file from the [ArgoCD release page](https://github.com/argoproj/argo-cd/releases), for example here is the [swagger.json link](https://github.com/argoproj/argo-cd/blob/v2.14.11/assets/swagger.json) for ArgoCD v2.14.11.
 
-2.  Place the downloaded `swagger.json` file in the root directory of the `argocd-mcp` project.
+2. Place the downloaded `swagger.json` file in the root directory of the `argocd-mcp` project.
 
-3.  Generate the TypeScript types from the Swagger definition by running the following command. This will create or overwrite the `src/types/argocd.d.ts` file:
+3. Generate the TypeScript types from the Swagger definition by running the following command. This will create or overwrite the `src/types/argocd.d.ts` file:
     ```bash
     pnpm run generate-types
     ```
 
-4.  Update the `src/types/argocd-types.ts` file to export the required types from the newly generated `src/types/argocd.d.ts`. This step often requires manual review to ensure only necessary types are exposed.
+4. Update the `src/types/argocd-types.ts` file to export the required types from the newly generated `src/types/argocd.d.ts`. This step often requires manual review to ensure only necessary types are exposed.
