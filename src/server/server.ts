@@ -31,7 +31,7 @@ export class Server extends McpServer {
       {
         search: z
           .string()
-          .nullish()
+          .optional()
           .describe(
             'Search applications by name. This is a partial match on the application name and does not support glob patterns (e.g. "*"). Optional.'
           )

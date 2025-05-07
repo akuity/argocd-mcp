@@ -46,9 +46,21 @@ export const ApplicationSchema = z.object({
         })
     }),
     destination: z.object({
-      server: z.string(),
-      namespace: z.string(),
+      server: z.string().optional(),
+      namespace: z.string().optional(),
       name: z.string().optional()
     })
+      .refine(
+        data =>
+          (data.server === undefined && data.name !== undefined) ||
+          (data.server !== undefined && data.name === undefined),
+        {
+          message: "Only one of server or name must be specified in destination"
+        }
+      )
+      .describe(
+        `The destination of the application.
+         Only one of server or name must be specified.`
+      )
   })
 });
