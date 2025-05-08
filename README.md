@@ -30,6 +30,9 @@ This project is maintained by [Akuity](https://akuity.io/), the creators of Argo
 
 Akuity is the enterprise company for Argo and Kargo, and provides the essential platform for end-to-end GitOps for Kubernetes. With the Akuity Platform, enterprises can deploy with managed Argo CD, promote seamlessly with Kargo, and gain real-time visibility into their infrastructure using Akuity Monitoring. Akuity was founded by Argo creators Hong Wang, Jesse Suen, and Alexander Matyushentsev, with a mission to empower both Platform and Application teams with the best tools for GitOps at enterprise scale.
 
+---
+![argocd-mcp-demo](https://github.com/user-attachments/assets/091548d0-9927-4d4b-a2fe-4f99c7cea108)
+
 ## Features
 
 - **Transport Protocols**: Supports both stdio and SSE transport modes for flexible integration with different clients
