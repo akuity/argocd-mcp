@@ -116,6 +116,19 @@ Akuity is the enterprise company for Argo and Kargo, and provides the essential 
 
 2. Configure Claude Desktop to use this configuration file in settings.
 
+### Usage with MCP Servers via SSE
+
+This can be deployed in SSE (Server-Sent Events) mode by running `npx argocd-mcp@latest sse`
+
+Authentication to ArgoCD can be passed in using either of the following
+
+#### 1: Headers 
+Pass in the URL with `x-argocd-base-url` and the token with `x-argocd-api-token` 
+
+#### 2: Environment Values 
+Pass in the URL with `ARGOCD_BASE_URL` and token with `ARGOCD_API_TOKEN`
+
+
 ## Available Tools
 
 The server provides the following ArgoCD management tools:

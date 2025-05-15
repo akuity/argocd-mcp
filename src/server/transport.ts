@@ -5,9 +5,17 @@ import { logger } from '../logging/logging.js';
 import { createServer } from './server.js';
 
 export const connectStdioTransport = () => {
+  const baseUrl = process.env.ARGOCD_BASE_URL;
+  const apiToken = process.env.ARGOCD_API_TOKEN;
+  
+  if (!baseUrl || !apiToken) {
+    console.error('Environment variables ARGOCD_BASE_URL and ARGOCD_API_TOKEN must be set.');
+    process.exit(1);
+  }
+
   const server = createServer({
-    argocdBaseUrl: process.env.ARGOCD_BASE_URL || '',
-    argocdApiToken: process.env.ARGOCD_API_TOKEN || ''
+    argocdBaseUrl: baseUrl,
+    argocdApiToken: apiToken
   });
 
   logger.info('Connecting to stdio transport');
@@ -19,9 +27,22 @@ export const connectSSETransport = (port: number) => {
   const transports: { [sessionId: string]: SSEServerTransport } = {};
 
   app.get('/sse', async (req, res) => {
+    const baseUrl =
+      (req.headers['x-argocd-base-url'] as string | undefined) ||
+      process.env.ARGOCD_BASE_URL;
+
+    const apiToken =
+      (req.headers['x-argocd-api-token'] as string | undefined) ||
+      process.env.ARGOCD_API_TOKEN;
+
+    if (!baseUrl || !apiToken) {
+      res.status(400).send('ARGOCD_BASE_URL and ARGOCD_API_TOKEN must be provided via headers or environment variables.');
+      return;
+    }
+
     const server = createServer({
-      argocdBaseUrl: (req.headers['x-argocd-base-url'] as string) || '',
-      argocdApiToken: (req.headers['x-argocd-api-token'] as string) || ''
+      argocdBaseUrl: baseUrl,
+      argocdApiToken: apiToken
     });
 
     const transport = new SSEServerTransport('/messages', res);
