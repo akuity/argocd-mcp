@@ -1,6 +1,6 @@
 {
   "servers": {
-    "argocd-mcp-sse": {
+    "argocd-mcp-http": {
       "type": "http",
       "url": "http://localhost:3000/mcp",
       "headers": {
