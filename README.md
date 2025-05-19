@@ -152,8 +152,11 @@ pnpm install
 
 3. Start the development server with hot reloading enabled:
 ```bash
-# For SSE mode with hot reloading
+# For HTTP mode with hot reloading
 pnpm run dev
+
+# For SSE mode with hot reloading
+pnpm run dev-sse
 ```
 Once the server is running, you can utilize the MCP server within Visual Studio Code or other MCP client.
 

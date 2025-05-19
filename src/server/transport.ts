@@ -17,12 +17,9 @@ export const connectStdioTransport = () => {
   server.connect(new StdioServerTransport());
 };
 
-export const connectHttpTransport = (port: number) => {
+export const connectSSETransport = (port: number) => {
   const app = express();
-  app.use(express.json());
-
   const transports: { [sessionId: string]: SSEServerTransport } = {};
-  const httpTransports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
 
   app.get('/sse', async (req, res) => {
     const server = createServer({
@@ -47,6 +44,16 @@ export const connectHttpTransport = (port: number) => {
       res.status(400).send(`No transport found for sessionId: ${sessionId}`);
     }
   });
+
+  logger.info(`Connecting to SSE transport on port: ${port}`);
+  app.listen(port);
+};
+
+export const connectHttpTransport = (port: number) => {
+  const app = express();
+  app.use(express.json());
+
+  const httpTransports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
 
   app.post('/mcp', async (req, res) => {
     const sessionIdFromHeader = req.headers['mcp-session-id'] as string | undefined;
