@@ -1,6 +1,6 @@
 # Argo CD MCP Server
 
-An implementation of [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for [Argo CD](https://argo-cd.readthedocs.io/en/stable/), enabling AI assistants to interact with your Argo CD applications through natural language. This server allows for seamless integration with Visual Studio Code and other MCP clients through both stdio and Server-Sent Events (SSE) transport protocols.
+An implementation of [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for [Argo CD](https://argo-cd.readthedocs.io/en/stable/), enabling AI assistants to interact with your Argo CD applications through natural language. This server allows for seamless integration with Visual Studio Code and other MCP clients through stdio and HTTP stream transport protocols.
 
 <a href="https://glama.ai/mcp/servers/@akuity/argocd-mcp">
   <img width="380" height="200" src="https://glama.ai/mcp/servers/@akuity/argocd-mcp/badge" alt="argocd-mcp MCP server" />
@@ -35,7 +35,7 @@ Akuity is the enterprise company for Argo and Kargo, and provides the essential 
 
 ## Features
 
-- **Transport Protocols**: Supports both stdio and SSE transport modes for flexible integration with different clients
+- **Transport Protocols**: Supports both stdio and HTTP stream transport modes for flexible integration with different clients
 - **Complete Argo CD API Integration**: Provides comprehensive access to Argo CD resources and operations
 - **AI Assistant Ready**: Pre-configured tools for AI assistants to interact with Argo CD in natural language
 
@@ -117,6 +117,18 @@ Akuity is the enterprise company for Argo and Kargo, and provides the essential 
 
 2. Configure Claude Desktop to use this configuration file in settings.
 
+### Self-signed Certificates
+
+If your Argo CD instance uses self-signed certificates or certificates from a private Certificate Authority (CA), you may need to add the following environment variable to your configuration:
+
+```
+"NODE_TLS_REJECT_UNAUTHORIZED": "0"
+```
+
+This disables TLS certificate validation for Node.js when connecting to Argo CD instances using self-signed certificates or certificates from private CAs that aren't trusted by your system's certificate store.
+
+> **Warning**: Disabling SSL verification reduces security. Use this setting only in development environments or when you understand the security implications.
+
 ## Available Tools
 
 The server provides the following ArgoCD management tools:
@@ -152,11 +164,7 @@ pnpm install
 
 3. Start the development server with hot reloading enabled:
 ```bash
-# For HTTP mode with hot reloading
 pnpm run dev
-
-# For SSE mode with hot reloading
-pnpm run dev-sse
 ```
 Once the server is running, you can utilize the MCP server within Visual Studio Code or other MCP client.
 
