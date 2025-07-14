@@ -83,10 +83,37 @@ export class Server extends McpServer {
     );
     this.addJsonOutputTool(
       'get_application_managed_resources',
-      'get_application_managed_resources returns managed resources for application by application name',
-      { applicationName: z.string() },
-      async ({ applicationName }) =>
-        await this.argocdClient.getApplicationManagedResources(applicationName)
+      'get_application_managed_resources returns managed resources for application by application name with optional filtering. Use filters to avoid token limits with large applications. Examples: kind="ConfigMap" for config maps only, namespace="production" for specific namespace, or combine multiple filters.',
+      {
+        applicationName: z.string(),
+        kind: z
+          .string()
+          .optional()
+          .describe(
+            'Filter by Kubernetes resource kind (e.g., "ConfigMap", "Secret", "Deployment")'
+          ),
+        namespace: z.string().optional().describe('Filter by Kubernetes namespace'),
+        name: z.string().optional().describe('Filter by resource name'),
+        version: z.string().optional().describe('Filter by resource API version'),
+        group: z.string().optional().describe('Filter by API group'),
+        appNamespace: z.string().optional().describe('Filter by Argo CD application namespace'),
+        project: z.string().optional().describe('Filter by Argo CD project')
+      },
+      async ({ applicationName, kind, namespace, name, version, group, appNamespace, project }) => {
+        const filters = {
+          ...(kind && { kind }),
+          ...(namespace && { namespace }),
+          ...(name && { name }),
+          ...(version && { version }),
+          ...(group && { group }),
+          ...(appNamespace && { appNamespace }),
+          ...(project && { project })
+        };
+        return await this.argocdClient.getApplicationManagedResources(
+          applicationName,
+          Object.keys(filters).length > 0 ? filters : undefined
+        );
+      }
     );
     this.addJsonOutputTool(
       'get_application_workload_logs',
