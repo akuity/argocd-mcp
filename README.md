@@ -129,6 +129,22 @@ This disables TLS certificate validation for Node.js when connecting to Argo CD 
 
 > **Warning**: Disabling SSL verification reduces security. Use this setting only in development environments or when you understand the security implications.
 
+
+### Read Only Mode
+
+If you want to run the MCP Server in a ReadOnly mode to avoid resource or application modification, you should set the environment variable:
+```
+"MCP_READ_ONLY": "true"
+```
+This will disable the following tools:
+- `create_application`
+- `update_application`
+- `delete_application`
+- `sync_application`
+- `run_resource_action`
+
+By default, all the tools will be available.
+
 ## Available Tools
 
 The server provides the following ArgoCD management tools:
