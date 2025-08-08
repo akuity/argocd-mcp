@@ -25,7 +25,10 @@ export class Server extends McpServer {
     });
     this.argocdClient = new ArgoCDClient(serverInfo.argocdBaseUrl, serverInfo.argocdApiToken);
 
-    const isReadOnly = String(process.env.MCP_READ_ONLY ?? '').trim().toLowerCase() === 'true';
+    const isReadOnly =
+      String(process.env.MCP_READ_ONLY ?? '')
+        .trim()
+        .toLowerCase() === 'true';
 
     // Always register read/query tools
     this.addJsonOutputTool(
