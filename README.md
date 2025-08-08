@@ -39,6 +39,26 @@ Akuity is the enterprise company for Argo and Kargo, and provides the essential 
 - **Complete Argo CD API Integration**: Provides comprehensive access to Argo CD resources and operations
 - **AI Assistant Ready**: Pre-configured tools for AI assistants to interact with Argo CD in natural language
 
+## Available Tools
+
+The server provides the following ArgoCD management tools:
+
+### Application Management
+- `list_applications`: List and filter all applications
+- `get_application`: Get detailed information about a specific application
+- `create_application`: Create a new application
+- `update_application`: Update an existing application
+- `delete_application`: Delete an application
+- `sync_application`: Trigger a sync operation on an application
+
+### Resource Management
+- `get_application_resource_tree`: Get the resource tree for a specific application
+- `get_application_managed_resources`: Get managed resources for a specific application
+- `get_application_workload_logs`: Get logs for application workloads (Pods, Deployments, etc.)
+- `get_resource_events`: Get events for resources managed by an application
+- `get_resource_actions`: Get available actions for resources
+- `run_resource_action`: Run an action on a resource
+
 ## Installation
 
 ### Prerequisites
@@ -144,26 +164,6 @@ This will disable the following tools:
 - `run_resource_action`
 
 By default, all the tools will be available.
-
-## Available Tools
-
-The server provides the following ArgoCD management tools:
-
-### Application Management
-- `list_applications`: List and filter all applications
-- `get_application`: Get detailed information about a specific application
-- `create_application`: Create a new application
-- `update_application`: Update an existing application
-- `delete_application`: Delete an application
-- `sync_application`: Trigger a sync operation on an application
-
-### Resource Management
-- `get_application_resource_tree`: Get the resource tree for a specific application
-- `get_application_managed_resources`: Get managed resources for a specific application
-- `get_application_workload_logs`: Get logs for application workloads (Pods, Deployments, etc.)
-- `get_resource_events`: Get events for resources managed by an application
-- `get_resource_actions`: Get available actions for resources
-- `run_resource_action`: Run an action on a resource
 
 ## For Development
 
