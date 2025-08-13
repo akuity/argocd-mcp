@@ -21,8 +21,18 @@ export class ArgoCDClient {
     this.client = new HttpClient(this.baseUrl, this.apiToken);
   }
 
-  public async listApplications(params?: { search?: string }) {
-    const { body } = await this.client.get<V1alpha1ApplicationList>(`/api/v1/applications`, params);
+  public async listApplications(filters?: {
+    search?: string;
+    project?: string;
+    appNamespace?: string;
+    destinationNamespace?: string;
+    destinationServer?: string;
+    destinationName?: string;
+    healthStatus?: string;
+    syncStatus?: string;
+    label?: string;
+  }) {
+    const { body } = await this.client.get<V1alpha1ApplicationList>(`/api/v1/applications`);
     return body;
   }
 
