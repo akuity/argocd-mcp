@@ -140,3 +140,6 @@ dist
 
 # ide
 .idea/
+
+# claude code
+CLAUDE.md

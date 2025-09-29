@@ -72,9 +72,21 @@ export class ArgoCDClient {
     return body;
   }
 
-  public async getApplicationManagedResources(applicationName: string) {
+  public async getApplicationManagedResources(
+    applicationName: string,
+    filters?: {
+      namespace?: string;
+      name?: string;
+      version?: string;
+      group?: string;
+      kind?: string;
+      appNamespace?: string;
+      project?: string;
+    }
+  ) {
     const { body } = await this.client.get<{ items: V1alpha1ResourceDiff[] }>(
-      `/api/v1/applications/${applicationName}/managed-resources`
+      `/api/v1/applications/${applicationName}/managed-resources`,
+      filters
     );
     return body;
   }

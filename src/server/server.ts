@@ -25,6 +25,12 @@ export class Server extends McpServer {
     });
     this.argocdClient = new ArgoCDClient(serverInfo.argocdBaseUrl, serverInfo.argocdApiToken);
 
+    const isReadOnly =
+      String(process.env.MCP_READ_ONLY ?? '')
+        .trim()
+        .toLowerCase() === 'true';
+
+    // Always register read/query tools
     this.addJsonOutputTool(
       'list_applications',
       'list_applications returns list of applications',
@@ -46,35 +52,6 @@ export class Server extends McpServer {
       async ({ applicationName }) => await this.argocdClient.getApplication(applicationName)
     );
     this.addJsonOutputTool(
-      'create_application',
-      'create_application creates application',
-      { application: ApplicationSchema },
-      async ({ application }) =>
-        await this.argocdClient.createApplication(application as V1alpha1Application)
-    );
-    this.addJsonOutputTool(
-      'update_application',
-      'update_application updates application',
-      { applicationName: z.string(), application: ApplicationSchema },
-      async ({ applicationName, application }) =>
-        await this.argocdClient.updateApplication(
-          applicationName,
-          application as V1alpha1Application
-        )
-    );
-    this.addJsonOutputTool(
-      'delete_application',
-      'delete_application deletes application',
-      { applicationName: z.string() },
-      async ({ applicationName }) => await this.argocdClient.deleteApplication(applicationName)
-    );
-    this.addJsonOutputTool(
-      'sync_application',
-      'sync_application syncs application',
-      { applicationName: z.string() },
-      async ({ applicationName }) => await this.argocdClient.syncApplication(applicationName)
-    );
-    this.addJsonOutputTool(
       'get_application_resource_tree',
       'get_application_resource_tree returns resource tree for application by application name',
       { applicationName: z.string() },
@@ -83,10 +60,37 @@ export class Server extends McpServer {
     );
     this.addJsonOutputTool(
       'get_application_managed_resources',
-      'get_application_managed_resources returns managed resources for application by application name',
-      { applicationName: z.string() },
-      async ({ applicationName }) =>
-        await this.argocdClient.getApplicationManagedResources(applicationName)
+      'get_application_managed_resources returns managed resources for application by application name with optional filtering. Use filters to avoid token limits with large applications. Examples: kind="ConfigMap" for config maps only, namespace="production" for specific namespace, or combine multiple filters.',
+      {
+        applicationName: z.string(),
+        kind: z
+          .string()
+          .optional()
+          .describe(
+            'Filter by Kubernetes resource kind (e.g., "ConfigMap", "Secret", "Deployment")'
+          ),
+        namespace: z.string().optional().describe('Filter by Kubernetes namespace'),
+        name: z.string().optional().describe('Filter by resource name'),
+        version: z.string().optional().describe('Filter by resource API version'),
+        group: z.string().optional().describe('Filter by API group'),
+        appNamespace: z.string().optional().describe('Filter by Argo CD application namespace'),
+        project: z.string().optional().describe('Filter by Argo CD project')
+      },
+      async ({ applicationName, kind, namespace, name, version, group, appNamespace, project }) => {
+        const filters = {
+          ...(kind && { kind }),
+          ...(namespace && { namespace }),
+          ...(name && { name }),
+          ...(version && { version }),
+          ...(group && { group }),
+          ...(appNamespace && { appNamespace }),
+          ...(project && { project })
+        };
+        return await this.argocdClient.getApplicationManagedResources(
+          applicationName,
+          Object.keys(filters).length > 0 ? filters : undefined
+        );
+      }
     );
     this.addJsonOutputTool(
       'get_application_workload_logs',
@@ -149,23 +153,56 @@ export class Server extends McpServer {
           resourceRef as V1alpha1ResourceResult
         )
     );
-    this.addJsonOutputTool(
-      'run_resource_action',
-      'run_resource_action runs an action on a resource',
-      {
-        applicationName: z.string(),
-        applicationNamespace: ApplicationNamespaceSchema,
-        resourceRef: ResourceRefSchema,
-        action: z.string()
-      },
-      async ({ applicationName, applicationNamespace, resourceRef, action }) =>
-        await this.argocdClient.runResourceAction(
-          applicationName,
-          applicationNamespace,
-          resourceRef as V1alpha1ResourceResult,
-          action
-        )
-    );
+
+    // Only register modification tools if not in read-only mode
+    if (!isReadOnly) {
+      this.addJsonOutputTool(
+        'create_application',
+        'create_application creates application',
+        { application: ApplicationSchema },
+        async ({ application }) =>
+          await this.argocdClient.createApplication(application as V1alpha1Application)
+      );
+      this.addJsonOutputTool(
+        'update_application',
+        'update_application updates application',
+        { applicationName: z.string(), application: ApplicationSchema },
+        async ({ applicationName, application }) =>
+          await this.argocdClient.updateApplication(
+            applicationName,
+            application as V1alpha1Application
+          )
+      );
+      this.addJsonOutputTool(
+        'delete_application',
+        'delete_application deletes application',
+        { applicationName: z.string() },
+        async ({ applicationName }) => await this.argocdClient.deleteApplication(applicationName)
+      );
+      this.addJsonOutputTool(
+        'sync_application',
+        'sync_application syncs application',
+        { applicationName: z.string() },
+        async ({ applicationName }) => await this.argocdClient.syncApplication(applicationName)
+      );
+      this.addJsonOutputTool(
+        'run_resource_action',
+        'run_resource_action runs an action on a resource',
+        {
+          applicationName: z.string(),
+          applicationNamespace: ApplicationNamespaceSchema,
+          resourceRef: ResourceRefSchema,
+          action: z.string()
+        },
+        async ({ applicationName, applicationNamespace, resourceRef, action }) =>
+          await this.argocdClient.runResourceAction(
+            applicationName,
+            applicationNamespace,
+            resourceRef as V1alpha1ResourceResult,
+            action
+          )
+      );
+    }
   }
 
   private addJsonOutputTool<Args extends ZodRawShape, T>(
