@@ -98,13 +98,17 @@ export class Server extends McpServer {
       {
         applicationName: z.string(),
         applicationNamespace: ApplicationNamespaceSchema,
-        resourceRef: ResourceRefSchema
+        resourceRef: ResourceRefSchema,
+        container: z.string().optional().describe('Optional container name to get logs from a specific container'),
+        tailLines: z.number().optional().describe('Number of lines to tail from the end of the logs (default: 100)')
       },
-      async ({ applicationName, applicationNamespace, resourceRef }) =>
+      async ({ applicationName, applicationNamespace, resourceRef, container, tailLines }) =>
         await this.argocdClient.getWorkloadLogs(
           applicationName,
           applicationNamespace,
-          resourceRef as V1alpha1ResourceResult
+          resourceRef as V1alpha1ResourceResult,
+          container,
+          tailLines
         )
     );
     this.addJsonOutputTool(

@@ -22,8 +22,35 @@ export class ArgoCDClient {
   }
 
   public async listApplications(params?: { search?: string }) {
-    const { body } = await this.client.get<V1alpha1ApplicationList>(`/api/v1/applications`, params);
-    return body;
+    const { body } = await this.client.get<V1alpha1ApplicationList>(`/api/v1/applications`);
+    
+    // If no search parameter, return all applications with filtered fields
+    const filteredItems = body.items?.map((app) => ({
+      metadata: {
+        name: app.metadata?.name,
+        namespace: app.metadata?.namespace,
+        labels: app.metadata?.labels
+      },
+      status: {
+        health: app.status?.health,
+        sync: app.status?.sync
+      }
+    })) || [];
+
+    if (!params?.search) {
+      return { items: filteredItems };
+    }
+    
+    // Full-text search across filtered fields and subfields
+    const searchTerm = params.search.toLowerCase();
+    
+    const searchMatches = filteredItems.filter((app) => {
+      // Convert the filtered app object to a string for full-text search
+      const searchableContent = JSON.stringify(app).toLowerCase();
+      return searchableContent.includes(searchTerm);
+    });
+    
+    return { items: searchMatches };
   }
 
   public async getApplication(applicationName: string) {
@@ -107,21 +134,29 @@ export class ArgoCDClient {
   public async getWorkloadLogs(
     applicationName: string,
     applicationNamespace: string,
-    resourceRef: V1alpha1ResourceResult
+    resourceRef: V1alpha1ResourceResult,
+    container?: string,
+    tailLines?: number
   ) {
     const logs: ApplicationLogEntry[] = [];
+    const params: any = {
+      appNamespace: applicationNamespace,
+      namespace: resourceRef.namespace,
+      resourceName: resourceRef.name,
+      group: resourceRef.group,
+      kind: resourceRef.kind,
+      version: resourceRef.version,
+      follow: false,
+      tailLines: tailLines ?? 100
+    };
+    
+    if (container) {
+      params.container = container;
+    }
+    
     await this.client.getStream<ApplicationLogEntry>(
       `/api/v1/applications/${applicationName}/logs`,
-      {
-        appNamespace: applicationNamespace,
-        namespace: resourceRef.namespace,
-        resourceName: resourceRef.name,
-        group: resourceRef.group,
-        kind: resourceRef.kind,
-        version: resourceRef.version,
-        follow: false,
-        tailLines: 100
-      },
+      params,
       (chunk) => logs.push(chunk)
     );
     return logs;
