@@ -3,7 +3,11 @@ import { McpServer, ToolCallback } from '@modelcontextprotocol/sdk/server/mcp.js
 import packageJSON from '../../package.json' with { type: 'json' };
 import { ArgoCDClient } from '../argocd/client.js';
 import { z, ZodRawShape } from 'zod';
-import { V1alpha1Application, V1alpha1ResourceResult } from '../types/argocd-types.js';
+import {
+  V1alpha1Application,
+  V1alpha1ApplicationList,
+  V1alpha1ResourceResult
+} from '../types/argocd-types.js';
 import {
   ApplicationNamespaceSchema,
   ApplicationSchema,
@@ -33,17 +37,124 @@ export class Server extends McpServer {
     // Always register read/query tools
     this.addJsonOutputTool(
       'list_applications',
-      'list_applications returns list of applications',
+      'list_applications returns list of applications with optional filtering applied server-side',
       {
         search: z
           .string()
           .optional()
           .describe(
-            'Search applications by name. This is a partial match on the application name and does not support glob patterns (e.g. "*"). Optional.'
+            'Partial match on application name (case-insensitive). Does not support glob patterns.'
+          ),
+        project: z.string().optional().describe('Filter by Argo CD project (spec.project)'),
+        appNamespace: z
+          .string()
+          .optional()
+          .describe('Filter by Argo CD application namespace (metadata.namespace)'),
+        destinationNamespace: z
+          .string()
+          .optional()
+          .describe('Filter by Kubernetes destination namespace (spec.destination.namespace)'),
+        destinationServer: z
+          .string()
+          .optional()
+          .describe('Filter by destination server URL (spec.destination.server)'),
+        destinationName: z
+          .string()
+          .optional()
+          .describe('Filter by destination cluster name (spec.destination.name)'),
+        healthStatus: z
+          .string()
+          .optional()
+          .describe('Filter by application health status (status.health.status)'),
+        syncStatus: z
+          .string()
+          .optional()
+          .describe('Filter by application sync status (status.sync.status)'),
+        label: z
+          .string()
+          .optional()
+          .describe(
+            'Filter by label. Accepts "key" (presence) or "key=value" (exact match) on metadata.labels.'
           )
       },
-      async ({ search }) =>
-        await this.argocdClient.listApplications({ search: search ?? undefined })
+      async ({
+        search,
+        project,
+        appNamespace,
+        destinationNamespace,
+        destinationServer,
+        destinationName,
+        healthStatus,
+        syncStatus,
+        label
+      }) => {
+        const applications: V1alpha1ApplicationList = await this.argocdClient.listApplications();
+
+        const normalizedSearch = (search ?? '').trim().toLowerCase();
+        const normalizedProject = (project ?? '').trim();
+        const normalizedAppNs = (appNamespace ?? '').trim();
+        const normalizedDestNs = (destinationNamespace ?? '').trim();
+        const normalizedDestServer = (destinationServer ?? '').trim();
+        const normalizedDestName = (destinationName ?? '').trim();
+        const normalizedHealth = (healthStatus ?? '').trim();
+        const normalizedSync = (syncStatus ?? '').trim();
+        const normalizedLabel = (label ?? '').trim();
+
+        const [labelKey, labelValue] = (() => {
+          if (!normalizedLabel) return [undefined, undefined] as const;
+          const idx = normalizedLabel.indexOf('=');
+          if (idx === -1) return [normalizedLabel, undefined] as const;
+          return [normalizedLabel.slice(0, idx), normalizedLabel.slice(idx + 1)] as const;
+        })();
+
+        const hasAnyFilter =
+          normalizedSearch ||
+          normalizedProject ||
+          normalizedAppNs ||
+          normalizedDestNs ||
+          normalizedDestServer ||
+          normalizedDestName ||
+          normalizedHealth ||
+          normalizedSync ||
+          labelKey;
+
+        if (!hasAnyFilter) {
+          return applications;
+        }
+
+        const filteredItems = (applications.items ?? []).filter((app) => {
+          const labels = app?.metadata?.labels ?? {};
+          const name = app?.metadata?.name ?? '';
+          const ns = app?.metadata?.namespace ?? '';
+          const proj = app?.spec?.project ?? '';
+          const destNs = app?.spec?.destination?.namespace ?? '';
+          const destServer = app?.spec?.destination?.server ?? '';
+          const destName = app?.spec?.destination?.name ?? '';
+          const health = app?.status?.health?.status ?? '';
+          const sync = app?.status?.sync?.status ?? '';
+
+          if (normalizedSearch && !name.toLowerCase().includes(normalizedSearch)) return false;
+          if (normalizedProject && proj !== normalizedProject) return false;
+          if (normalizedAppNs && ns !== normalizedAppNs) return false;
+          if (normalizedDestNs && destNs !== normalizedDestNs) return false;
+          if (normalizedDestServer && destServer !== normalizedDestServer) return false;
+          if (normalizedDestName && destName !== normalizedDestName) return false;
+          if (normalizedHealth && health !== normalizedHealth) return false;
+          if (normalizedSync && sync !== normalizedSync) return false;
+
+          if (labelKey) {
+            if (!(labelKey in labels)) return false;
+            if (labelValue !== undefined && labels[labelKey] !== labelValue) return false;
+          }
+
+          return true;
+        });
+
+        return {
+          items: filteredItems,
+          metadata: applications.metadata
+        };
+      }
     );
     this.addJsonOutputTool(
       'get_application',
