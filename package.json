@@ -4,7 +4,7 @@
   "description": "Argo CD MCP Server",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akuity/argocd-mcp.git"
+    "url": "git+https://github.com/argoproj-labs/mcp-for-argocd.git"
   },
   "keywords": [
     "mcp",
@@ -45,7 +45,7 @@
     "generate-types": "dtsgen -c dtsgen.json -o src/types/argocd.d.ts swagger.json",
     "prepare": "npm run build"
   },
-  "author": "Akuity, Inc.",
+  "author": "Argo Proj Contributors.",
   "license": "Apache-2.0",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.1",
