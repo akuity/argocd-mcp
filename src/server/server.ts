@@ -40,10 +40,30 @@ export class Server extends McpServer {
           .optional()
           .describe(
             'Search applications by name. This is a partial match on the application name and does not support glob patterns (e.g. "*"). Optional.'
+          ),
+        limit: z
+          .number()
+          .int()
+          .positive()
+          .optional()
+          .describe(
+            'Maximum number of applications to return. Use this to reduce token usage when there are many applications. Optional.'
+          ),
+        offset: z
+          .number()
+          .int()
+          .min(0)
+          .optional()
+          .describe(
+            'Number of applications to skip before returning results. Use with limit for pagination. Optional.'
           )
       },
-      async ({ search }) =>
-        await this.argocdClient.listApplications({ search: search ?? undefined })
+      async ({ search, limit, offset }) =>
+        await this.argocdClient.listApplications({
+          search: search ?? undefined,
+          limit,
+          offset
+        })
     );
     this.addJsonOutputTool(
       'get_application',
