@@ -24,12 +24,6 @@ const urlForGithub = `https://insiders.vscode.dev/redirect?url=${encodeURICompon
 
 [<img src="https://img.shields.io/badge/VS_Code-VS_Code?style=flat-square&label=Install%20Server&color=0098FF" alt="Install in VS Code">](https://insiders.vscode.dev/redirect?url=vscode%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522argocd-mcp%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522argocd-mcp%2540latest%2522%252C%2522stdio%2522%255D%252C%2522env%2522%253A%257B%2522ARGOCD_BASE_URL%2522%253A%2522%253Cargocd_url%253E%2522%252C%2522ARGOCD_API_TOKEN%2522%253A%2522%253Cargocd_token%253E%2522%257D%257D)  [<img alt="Install in VS Code Insiders" src="https://img.shields.io/badge/VS_Code_Insiders-VS_Code_Insiders?style=flat-square&label=Install%20Server&color=24bfa5">](https://insiders.vscode.dev/redirect?url=vscode-insiders%3Amcp%2Finstall%3F%257B%2522name%2522%253A%2522argocd-mcp%2522%252C%2522command%2522%253A%2522npx%2522%252C%2522args%2522%253A%255B%2522argocd-mcp%2540latest%2522%252C%2522stdio%2522%255D%252C%2522env%2522%253A%257B%2522ARGOCD_BASE_URL%2522%253A%2522%253Cargocd_url%253E%2522%252C%2522ARGOCD_API_TOKEN%2522%253A%2522%253Cargocd_token%253E%2522%257D%257D)
 
-This project is maintained by [Akuity](https://akuity.io/), the creators of Argo Project.
-
-<img align="center" src="https://raw.githubusercontent.com/akuity/argocd-mcp/main/images/akuity.png" alt="akuity" width="50%" height="50%">
-
-Akuity is the enterprise company for Argo and Kargo, and provides the essential platform for end-to-end GitOps for Kubernetes. With the Akuity Platform, enterprises can deploy with managed Argo CD, promote seamlessly with Kargo, and gain real-time visibility into their infrastructure using Akuity Monitoring. Akuity was founded by Argo creators Hong Wang, Jesse Suen, and Alexander Matyushentsev, with a mission to empower both Platform and Application teams with the best tools for GitOps at enterprise scale.
-
 ---
 ![argocd-mcp-demo](https://github.com/user-attachments/assets/091548d0-9927-4d4b-a2fe-4f99c7cea108)
 
@@ -169,8 +163,8 @@ By default, all the tools will be available.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/akuity/argocd-mcp.git
-cd argocd-mcp
+git clone https://github.com/argoproj-labs/mcp-for-argocd.git
+cd mcp-for-argocd
 ```
 
 2. Install project dependencies:
@@ -198,3 +192,7 @@ To update the TypeScript type definitions based on the latest Argo CD API specif
     ```
 
 4. Update the `src/types/argocd-types.ts` file to export the required types from the newly generated `src/types/argocd.d.ts`. This step often requires manual review to ensure only necessary types are exposed.
+
+## Credits
+
+The project was initially created and donated by [@jiachengxu](https://github.com/jiachengxu), [@imwithye](https://github.com/imwithye), [@hwwn](https://github.com/hwwn), and [@alexmt](https://github.com/alexmt) from [Akuity](https://akuity.io/).
