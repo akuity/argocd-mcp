@@ -42,8 +42,7 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "build": "tsup",
     "build:watch": "tsup --watch",
-    "generate-types": "dtsgen -c dtsgen.json -o src/types/argocd.d.ts swagger.json",
-    "prepare": "npm run build"
+    "generate-types": "dtsgen -c dtsgen.json -o src/types/argocd.d.ts swagger.json"
   },
   "author": "Argo Proj Contributors.",
   "license": "Apache-2.0",
