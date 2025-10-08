@@ -62,8 +62,10 @@ export const connectHttpTransport = (port: number) => {
     if (sessionIdFromHeader && httpTransports[sessionIdFromHeader]) {
       transport = httpTransports[sessionIdFromHeader];
     } else if (!sessionIdFromHeader && isInitializeRequest(req.body)) {
-      const argocdBaseUrl = (req.headers['x-argocd-base-url'] as string) || '';
-      const argocdApiToken = (req.headers['x-argocd-api-token'] as string) || '';
+      const argocdBaseUrl =
+        (req.headers['x-argocd-base-url'] as string) || process.env.ARGOCD_BASE_URL || '';
+      const argocdApiToken =
+        (req.headers['x-argocd-api-token'] as string) || process.env.ARGOCD_API_TOKEN || '';
 
       if (argocdBaseUrl == '' || argocdApiToken == '') {
         res
